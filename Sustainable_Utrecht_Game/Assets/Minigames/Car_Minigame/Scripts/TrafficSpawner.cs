@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class TrafficSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject prefab;
-    [SerializeField] private float spawnDelay;
+    [SerializeField] private GameObject prefab = null;
+    [SerializeField] private float spawnDelay = 1f;
     private float spawnTimer = 0;
-    [SerializeField] private float bikeSpawns;
-    [SerializeField] private float carSpawns;
-    [SerializeField] private float truckSpawns;
+    [SerializeField] private float bikeSpawns = 1f;
+    [SerializeField] private float carSpawns = 1f;
+    [SerializeField] private float truckSpawns = 1f;
 
 
 
