@@ -24,7 +24,7 @@ public class TrafficObject : MonoBehaviour
     }
 
     public void SetType(TrafficType type) {
-        SpriteRenderer spriteRenderer = spriteObject.GetComponent<SpriteRenderer>();
+/*        SpriteRenderer spriteRenderer = spriteObject.GetComponent<SpriteRenderer>();
         switch((int)type) {
             case 0:
                 spriteRenderer.sprite = bikeSprite;
@@ -37,7 +37,7 @@ public class TrafficObject : MonoBehaviour
                 break;
         }
         spriteObject.transform.localScale = (targetHeight / spriteRenderer.bounds.size.y) * spriteObject.transform.localScale;
-        spriteObject.transform.localPosition = new Vector3(0, spriteRenderer.bounds.size.y / 2f, 0) ;
+        spriteObject.transform.localPosition = new Vector3(0, spriteRenderer.bounds.size.y / 2f, 0);*/
 
 
     }
