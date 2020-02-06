@@ -39,7 +39,7 @@ public class TouchSystem : MonoBehaviour {
 
 
     void Update() {
-        if((!mouse && Input.touchCount > 0) || (mouse && Input.GetMouseButton(0))) {
+        if((!mouse && Input.touchCount > 0) || (mouse)) {
             Vector2 pos;
             Touch touch = new Touch();
             if(!mouse) {
@@ -62,14 +62,13 @@ public class TouchSystem : MonoBehaviour {
 
                 }
 
-                if(dragging) {
+                if(dragging && draggingObject == null) {
                     hit = Physics2D.Raycast(touchedPos, Vector2.zero, 10, draggableMask);
                     if(hit) {
                         IDraggable draggable = hit.collider.GetComponent<IDraggable>();
                         if(draggable != null) {
-                            if(draggingObject != draggable)
-                                draggingObject = draggable;
-                            draggable.Pick();
+                            draggingObject = draggable;
+                            draggingObject.Pick();
                         }
                     }
                 }
@@ -77,11 +76,8 @@ public class TouchSystem : MonoBehaviour {
             }
 
             if((!mouse && (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)) || (mouse && Input.GetMouseButtonUp(0))) {
-                if(dragging) {
-
-                    if(draggingObject != null) {
-                        draggingObject.Drop();
-                    }
+                if(dragging && draggingObject != null) {
+                    draggingObject.Drop();
                     draggingObject = null;
                 }
             }
