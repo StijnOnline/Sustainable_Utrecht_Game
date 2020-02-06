@@ -6,27 +6,27 @@ using UnityEngine.UI;
 using TMPro;
 
 public class RecycleGameManager : MonoBehaviour {
-    [SerializeField] private GameObject trashPrefab;
-    [SerializeField] private TrashInfo[] trashObjects;
-    [SerializeField] private TrashBin[] bins;
-    [SerializeField] private Transform spawnPos;
-    [SerializeField] private TextMeshProUGUI timerText;
-    [SerializeField] private TextMeshProUGUI timeLossText;
+    [SerializeField] private GameObject trashPrefab = null;
+    [SerializeField] private TrashInfo[] trashObjects = null;
+    [SerializeField] private TrashBin[] bins = null;
+    [SerializeField] private Transform spawnPos = null;
+    [SerializeField] private TextMeshProUGUI timerText = null;
+    [SerializeField] private TextMeshProUGUI timeLossText = null;
 
     [SerializeField] private float maxTime = 60f;
     [SerializeField] private float lossTime = 10f;
-    public List<TrashInfo> correctTrash;
-    public TrashInfo lastIncorrectTrash;
+    public List<TrashInfo> correctTrash = null;
+    public TrashInfo lastIncorrectTrash = null;
     [Header("CorrectScreen")]
-    [SerializeField] private TextMeshProUGUI correctCountText;
+    [SerializeField] private TextMeshProUGUI correctCountText=null;
     public GameObject correctScreen = null;
-    public RectTransform correctList;
-    public RectTransform menuItem;
+    public RectTransform correctList = null;
+    public RectTransform menuItem = null;
     [Header("InCorrectScreen")]
     public GameObject incorrectScreen = null;
-    [SerializeField] private TextMeshProUGUI incorrectMesssage;
-    public Image itemImage;
-    public Image corrertBinImage;
+    [SerializeField] private TextMeshProUGUI incorrectMesssage = null;
+    public Image itemImage = null;
+    public Image corrertBinImage = null;
 
     private float timer = 0;
     private int correctCount = 0;
