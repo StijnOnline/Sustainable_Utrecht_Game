@@ -18,6 +18,7 @@ public class TrafficObject : MonoBehaviour, IClickable {
     [SerializeField] private GameObject carObject = null;
     [SerializeField] private GameObject truckObject = null;
     private Animator animator = null;
+    [HideInInspector] public CarMinigameManager manager;
 
     private void Start() {
 
@@ -30,7 +31,8 @@ public class TrafficObject : MonoBehaviour, IClickable {
 
         AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
         if(animationState.normalizedTime > 1) {
-            //done
+            manager.ReachedEnd(type);
+            Destroy(gameObject, 0);
         }
     }
 

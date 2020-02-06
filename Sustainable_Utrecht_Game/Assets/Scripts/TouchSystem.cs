@@ -48,15 +48,23 @@ public class TouchSystem : MonoBehaviour {
             } else {
                 pos = Input.mousePosition;
             }
-            Vector3 touchedPos = Camera.main.ScreenToWorldPoint(new Vector3(pos.x, pos.y, 10));
+            Vector3 touchedPos = Camera.main.ScreenToWorldPoint(new Vector3(pos.x, pos.y, 100000));
 
 
             if((!mouse && touch.phase == TouchPhase.Began) || (mouse && Input.GetMouseButtonDown(0))) {
                 Ray touchRay = new Ray(Vector3.forward, touchedPos);
-                RaycastHit2D hit = Physics2D.Raycast(touchedPos, Vector2.zero, 10, tappableMask);
+                RaycastHit2D hit = Physics2D.Raycast(touchedPos, Vector2.zero, Mathf.Infinity, tappableMask);
 
                 if(hit) {
-                    IClickable clickable = hit.collider.GetComponent<IClickable>();
+                    Transform checking = hit.transform;
+                    IClickable clickable = null;
+                    do {
+                        checking = checking.parent;
+                        clickable = checking.GetComponent<IClickable>();
+
+                    } while(clickable == null && checking.parent != null);
+
+
                     if(clickable != null)
                         clickable.Click();
 
