@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Trash : MonoBehaviour, IDraggable {
-    public TrashType type;
-    private Rigidbody2D rb = null;
-    private Collider2D coll = null;
     [SerializeField] private float flickSpeedModifier = 5f;
+    private float targetSize = 2f;
+    private Rigidbody2D rb = null;
+    private CircleCollider2D coll = null;
 
-    void Start() {
+    public TrashInfo trashInfo;
+
+    public void Init() {
         rb = GetComponent<Rigidbody2D>();
-        coll = GetComponent<Collider2D>();
+        coll = GetComponent<CircleCollider2D>();
+        Transform trail = GetComponentInChildren<TrailRenderer>().transform;
+
+        SpriteRenderer r = GetComponent<SpriteRenderer>();
+        r.sprite = trashInfo.sprite;
+        r.transform.localScale = (targetSize / r.bounds.size.y) * r.transform.localScale;
+        trail.localScale = 2f *  trail.localScale / trail.lossyScale.y;
+        coll.radius = 1.5f *  targetSize * Mathf.Max(r.bounds.size.x, r.bounds.size.y);
     }
 
     public void Drop() {

@@ -22,8 +22,8 @@ public class TrafficSpawner : MonoBehaviour
 
             float total = (bikeSpawns + carSpawns + truckSpawns);
             float r = Random.Range(0f, 1f);
-            if(r > bikeSpawns / total) { ob.SetType(TrafficObject.TrafficType.Bike); }
-            else if(r > truckSpawns / total) { ob.SetType(TrafficObject.TrafficType.Truck); }
+            if(r < bikeSpawns / total) { ob.SetType(TrafficObject.TrafficType.Bike); }
+            else if(r > (total - truckSpawns) / total) { ob.SetType(TrafficObject.TrafficType.Truck); }
             else{ ob.SetType(TrafficObject.TrafficType.Car); }
 
             

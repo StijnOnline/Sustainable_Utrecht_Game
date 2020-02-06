@@ -82,10 +82,20 @@ PrefabInstance:
       propertyPath: type
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2277542038238730738, guid: e5673a4f8cf72d5408b25799d45825c9,
+        type: 3}
+      propertyPath: trashInfo.correctType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2277542038238730738, guid: e5673a4f8cf72d5408b25799d45825c9,
+        type: 3}
+      propertyPath: trashInfo.name
+      value: blaadje
+      objectReference: {fileID: 0}
     - target: {fileID: 2277542038238730739, guid: e5673a4f8cf72d5408b25799d45825c9,
         type: 3}
       propertyPath: m_Name
-      value: Trash
+      value: Trash Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5673a4f8cf72d5408b25799d45825c9, type: 3}
