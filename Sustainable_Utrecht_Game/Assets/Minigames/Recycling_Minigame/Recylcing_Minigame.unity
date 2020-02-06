@@ -204,7 +204,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 60.4
+  m_fontSize: 67.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3209,12 +3209,19 @@ MonoBehaviour:
   trashPrefab: {fileID: 2277542038238730739, guid: e5673a4f8cf72d5408b25799d45825c9,
     type: 3}
   trashObjects:
-  - {fileID: 11400000, guid: 9a0c1f440a444584ca54faa4f7f5aac2, type: 2}
-  - {fileID: 11400000, guid: 00a0262a2d720d24893246e4667a7330, type: 2}
-  - {fileID: 11400000, guid: 05046595d0c4c0d41a647b2bf8b4521d, type: 2}
-  - {fileID: 11400000, guid: 256b18333fb38b846b33fcdd7f4ff33d, type: 2}
-  - {fileID: 11400000, guid: 4351dea1c8c32e649bb46e42e6d83f35, type: 2}
-  - {fileID: 11400000, guid: cdf7400a6705be44ea45e71a400157cc, type: 2}
+  - {fileID: 11400000, guid: 2256d2645eb4c16418624a5311dfd215, type: 2}
+  - {fileID: 11400000, guid: 8b8ff0f6527e65e48ae3e49252430f86, type: 2}
+  - {fileID: 11400000, guid: 48637aad9dc60994b9d335e46bc4aa95, type: 2}
+  - {fileID: 11400000, guid: 7758fd6404928024eaf47a180c3a8a98, type: 2}
+  - {fileID: 11400000, guid: 24e0f6031bf0c3e4fbe3e983786b86fa, type: 2}
+  - {fileID: 11400000, guid: 3bfe7763433f93f489e4d9a0839f71c0, type: 2}
+  - {fileID: 11400000, guid: 973da325bd90cbc498b640f146f864cf, type: 2}
+  - {fileID: 11400000, guid: 1147333db2728a24486eaa1305cd3e76, type: 2}
+  - {fileID: 11400000, guid: cfc518e21eadbcf40b9662ba2dd9539b, type: 2}
+  - {fileID: 11400000, guid: 2f3dd231d06516b408773634bf7d551b, type: 2}
+  - {fileID: 11400000, guid: 90504367065688049ba4601d79205d31, type: 2}
+  - {fileID: 11400000, guid: 28d947f61c6510a40ae71763b5262e90, type: 2}
+  - {fileID: 11400000, guid: 3938a3d4e8dc9174abf0364e75259e17, type: 2}
   bins:
   - {fileID: 1025115684}
   - {fileID: 298571542}

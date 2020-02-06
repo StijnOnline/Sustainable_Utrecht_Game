@@ -113,16 +113,16 @@ public class RecycleGameManager : MonoBehaviour {
         itemImage.sprite = lastIncorrectTrash.sprite;
         incorrectMesssage.SetText(lastIncorrectTrash.explanation);
         switch(lastIncorrectTrash.correctType) {
-            case Trash.TrashType.Paper:
+            case Trash.TrashType.Papier:
                 corrertBinImage.sprite = bins[0].paperSprite;
                 break;
-            case Trash.TrashType.Plastic:
+            case Trash.TrashType.PMD:
                 corrertBinImage.sprite = bins[0].plasticSprite;
                 break;
-            case Trash.TrashType.Green:
+            case Trash.TrashType.GFT:
                 corrertBinImage.sprite = bins[0].greenSprite;
                 break;
-            case Trash.TrashType.Other:
+            case Trash.TrashType.RestAfval:
                 corrertBinImage.sprite = bins[0].otherSprite;
                 break;
             default:

@@ -38,9 +38,9 @@ public class Trash : MonoBehaviour, IDraggable {
     }
 
     public enum TrashType {
-        Paper,
-        Plastic,
-        Green,
-        Other
+        Papier,
+        PMD,
+        GFT,
+        RestAfval
     }
 }

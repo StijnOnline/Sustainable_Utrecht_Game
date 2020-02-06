@@ -32,16 +32,16 @@ public class TrashBin : MonoBehaviour {
     public void SetType(Trash.TrashType type) {
         this.type = type;
         switch(type) {
-            case Trash.TrashType.Paper:
+            case Trash.TrashType.Papier:
                 spriteRenderer.sprite = paperSprite;
                 break;
-            case Trash.TrashType.Plastic:
+            case Trash.TrashType.PMD:
                 spriteRenderer.sprite = plasticSprite;
                 break;
-            case Trash.TrashType.Green:
+            case Trash.TrashType.GFT:
                 spriteRenderer.sprite = greenSprite;
                 break;
-            case Trash.TrashType.Other:
+            case Trash.TrashType.RestAfval:
                 spriteRenderer.sprite = otherSprite;
                 break;
             default:
