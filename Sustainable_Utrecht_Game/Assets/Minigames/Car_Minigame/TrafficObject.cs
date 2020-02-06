@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrafficObject : MonoBehaviour
-{
+public class TrafficObject : MonoBehaviour, IClickable {
     [SerializeField] private TrafficType type = TrafficType.Bike;
 
 
@@ -13,12 +12,26 @@ public class TrafficObject : MonoBehaviour
         Truck
     }
 
+    [SerializeField] private int MAX_HP = 1;
+    [SerializeField] private int HP = 1;
     [SerializeField] private GameObject bikeObject = null;
-    [SerializeField] private GameObject carObject= null;
+    [SerializeField] private GameObject carObject = null;
     [SerializeField] private GameObject truckObject = null;
+    private Animator animator = null;
 
     private void Start() {
+
+        animator = GetComponent<Animator>();
+        HP = MAX_HP;
         SetType(type);
+    }
+
+    void Update() {
+
+        AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
+        if(animationState.normalizedTime > 1) {
+            //done
+        }
     }
 
     public void SetType(TrafficType type) {
@@ -27,7 +40,7 @@ public class TrafficObject : MonoBehaviour
         bikeObject.SetActive(type == TrafficType.Bike);
         carObject.SetActive(type == TrafficType.Car);
         truckObject.SetActive(type == TrafficType.Truck);
-        
+
         /*        SpriteRenderer spriteRenderer = spriteObject.GetComponent<SpriteRenderer>();
                 switch((int)type) {
                     case 0:
@@ -44,5 +57,24 @@ public class TrafficObject : MonoBehaviour
                 spriteObject.transform.localPosition = new Vector3(0, spriteRenderer.bounds.size.y / 2f, 0);*/
 
 
+    }
+
+    public void Click() {
+        HP--;
+        if(HP <= 0) {
+            switch(type) {
+                case TrafficType.Bike:
+                    break;
+                case TrafficType.Car:
+                    SetType(TrafficType.Bike);
+                    break;
+                case TrafficType.Truck:
+                    SetType(TrafficType.Car);
+                    break;
+                default:
+                    break;
+            }
+            HP = MAX_HP;
+        }
     }
 }

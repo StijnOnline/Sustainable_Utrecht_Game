@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class TrashBin : MonoBehaviour {
     [SerializeField] private Trash.TrashType type;
-    private int correctCount = 0;
-    private int incorrectCount = 0;
-    [SerializeField] private RecycleGameManager gameManager;
+    [SerializeField] private RecycleGameManager gameManager = null;
 
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] public Sprite paperSprite;
-    [SerializeField] public Sprite plasticSprite;
-    [SerializeField] public Sprite greenSprite;
-    [SerializeField] public Sprite otherSprite;
-    [SerializeField] private GameObject correctFeedback;
-    [SerializeField] private GameObject incorrectFeedback;
+    [SerializeField] private SpriteRenderer spriteRenderer=null;
+    [SerializeField] public Sprite paperSprite=null;
+    [SerializeField] public Sprite plasticSprite=null;
+    [SerializeField] public Sprite greenSprite =null;
+    [SerializeField] public Sprite otherSprite = null;
+    [SerializeField] private GameObject correctFeedback = null;
+    [SerializeField] private GameObject incorrectFeedback = null;
 
     private void OnTriggerEnter2D(Collider2D collision) {
         Trash trash = collision.GetComponent<Trash>();
