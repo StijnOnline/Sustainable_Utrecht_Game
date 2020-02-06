@@ -14,13 +14,13 @@ public class CarMinigameManager : MonoBehaviour
     private float timer = 0;
     private bool playing = true;
 
-    [SerializeField] private TextMeshProUGUI timerText;
-    [SerializeField] private GameObject[] trafficSpawners;
+    [SerializeField] private TextMeshProUGUI timerText = null;
+    [SerializeField] private GameObject[] trafficSpawners = null;
     [Header("EndScreen")]
-    [SerializeField] private GameObject endScreen;
-    [SerializeField] private TextMeshProUGUI truckCountText;
-    [SerializeField] private TextMeshProUGUI carCountText;
-    [SerializeField] private TextMeshProUGUI bikeCountText;
+    [SerializeField] private GameObject endScreen = null;
+    [SerializeField] private TextMeshProUGUI truckCountText = null;
+    [SerializeField] private TextMeshProUGUI carCountText = null;
+    [SerializeField] private TextMeshProUGUI bikeCountText = null;
 
     private void Start() {
         Screen.orientation = ScreenOrientation.LandscapeLeft;
