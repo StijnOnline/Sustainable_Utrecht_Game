@@ -57,12 +57,13 @@ public class TouchSystem : MonoBehaviour {
 
                 if(hit) {
                     Transform checking = hit.transform;
-                    IClickable clickable = null;
-                    do {
+                    IClickable clickable = checking.GetComponent<IClickable>(); ;
+                    while(clickable == null && checking.parent != null)
+                    {
                         checking = checking.parent;
                         clickable = checking.GetComponent<IClickable>();
 
-                    } while(clickable == null && checking.parent != null);
+                    } 
 
 
                     if(clickable != null)

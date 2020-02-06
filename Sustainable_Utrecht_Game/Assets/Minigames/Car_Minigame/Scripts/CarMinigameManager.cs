@@ -9,13 +9,10 @@ public class CarMinigameManager : MonoBehaviour
     private int carCount = 0;
     private int truckCount = 0;
 
-
-    [SerializeField] private float maxTime = 60f;
-    private float timer = 0;
-    private bool playing = true;
-
-    [SerializeField] private TextMeshProUGUI timerText = null;
     [SerializeField] private GameObject[] trafficSpawners = null;
+
+    [SerializeField] private int maxSpawns = 1;
+    private int spawnCount = 0;
     [Header("EndScreen")]
     [SerializeField] private GameObject endScreen = null;
     [SerializeField] private TextMeshProUGUI truckCountText = null;
@@ -24,23 +21,16 @@ public class CarMinigameManager : MonoBehaviour
 
     private void Start() {
         Screen.orientation = ScreenOrientation.LandscapeLeft;
-
-        timer = maxTime;
     }
 
-    private void Update() {
-        if(playing) {
-            timer -= Time.deltaTime;
-            if(timer < 0) {
-                playing = false;
-                foreach(var item in trafficSpawners) {
-                    item.SetActive(false);
-                }
-
-                EndScreen();
+    public void Spawned() {
+        spawnCount++;
+        if(spawnCount >= maxSpawns) {
+            foreach(var item in trafficSpawners) {
+                item.SetActive(false);
             }
-            string t = Mathf.FloorToInt(timer / 60) + ":" + Mathf.FloorToInt(timer % 60f).ToString("00");
-            timerText.SetText(t);
+
+            Invoke("EndScreen",5f);
         }
     }
 
@@ -58,6 +48,7 @@ public class CarMinigameManager : MonoBehaviour
             default:
                 break;
         }
+        
     }
 
     void EndScreen() {

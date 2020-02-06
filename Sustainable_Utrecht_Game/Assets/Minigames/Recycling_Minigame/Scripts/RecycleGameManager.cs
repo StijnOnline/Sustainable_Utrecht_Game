@@ -63,7 +63,7 @@ public class RecycleGameManager : MonoBehaviour {
 
         }
 
-        Invoke("SpawnTrash",1f);
+        Invoke("SpawnTrash",0.7f);
         
     
     

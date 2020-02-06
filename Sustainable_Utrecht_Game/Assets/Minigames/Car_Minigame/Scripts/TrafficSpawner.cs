@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrafficSpawner : MonoBehaviour
-{
+public class TrafficSpawner : MonoBehaviour {
     [SerializeField] private GameObject prefab = null;
+    [SerializeField] private CarMinigameManager manager = null;
+
+
     [SerializeField] private float beginDelay = 1f;
     [SerializeField] private float spawnDelay = 1f;
     private float spawnTimer = float.MaxValue;
+
+
+
+    [Header("Weights")]
     [SerializeField] private float bikeSpawns = 1f;
     [SerializeField] private float carSpawns = 1f;
     [SerializeField] private float truckSpawns = 1f;
-    [SerializeField] private CarMinigameManager manager = null;
 
     private void Start() {
         spawnTimer = beginDelay;
@@ -21,6 +26,8 @@ public class TrafficSpawner : MonoBehaviour
     {
         spawnTimer += Time.deltaTime;
         if(spawnTimer > spawnDelay) {
+            manager.Spawned();
+
             spawnTimer = 0;
             TrafficObject ob = Instantiate(prefab, transform.position, transform.rotation).GetComponent<TrafficObject>();
             ob.manager = manager;
