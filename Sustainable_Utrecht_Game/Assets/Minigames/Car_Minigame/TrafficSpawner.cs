@@ -5,6 +5,7 @@ using UnityEngine;
 public class TrafficSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject prefab = null;
+    [SerializeField] private float beginDelay = 1f;
     [SerializeField] private float spawnDelay = 1f;
     private float spawnTimer = float.MaxValue;
     [SerializeField] private float bikeSpawns = 1f;
@@ -12,6 +13,9 @@ public class TrafficSpawner : MonoBehaviour
     [SerializeField] private float truckSpawns = 1f;
     [SerializeField] private CarMinigameManager manager = null;
 
+    private void Start() {
+        spawnTimer = beginDelay;
+    }
 
     void Update()
     {
