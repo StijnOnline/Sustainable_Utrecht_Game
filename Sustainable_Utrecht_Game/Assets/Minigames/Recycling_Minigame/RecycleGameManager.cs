@@ -24,6 +24,7 @@ public class RecycleGameManager : MonoBehaviour {
     public RectTransform menuItem;
     [Header("InCorrectScreen")]
     public GameObject incorrectScreen = null;
+    [SerializeField] private TextMeshProUGUI incorrectMesssage;
     public Image itemImage;
     public Image corrertBinImage;
 
@@ -110,7 +111,7 @@ public class RecycleGameManager : MonoBehaviour {
     public void IncorrectScreen() {
         correctScreen.SetActive(false);
         itemImage.sprite = lastIncorrectTrash.sprite;
-
+        incorrectMesssage.SetText(lastIncorrectTrash.explanation);
         switch(lastIncorrectTrash.correctType) {
             case Trash.TrashType.Paper:
                 corrertBinImage.sprite = bins[0].paperSprite;
