@@ -11,6 +11,7 @@ public class TrashBin : MonoBehaviour {
     [SerializeField] public Sprite plasticSprite=null;
     [SerializeField] public Sprite greenSprite =null;
     [SerializeField] public Sprite otherSprite = null;
+    [SerializeField] private GameObject binEffect = null;
     [SerializeField] private GameObject correctFeedback = null;
     [SerializeField] private GameObject incorrectFeedback = null;
 
@@ -19,6 +20,7 @@ public class TrashBin : MonoBehaviour {
         bool correct = trash.trashInfo.correctType == type;
         if(trash != null) {
             gameManager.NextTrash(correct, trash.trashInfo);
+            Destroy(Instantiate(binEffect, transform.position, transform.rotation), 1f);
             Destroy(trash.gameObject);
         }
         if(correct) {

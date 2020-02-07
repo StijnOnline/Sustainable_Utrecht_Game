@@ -590,11 +590,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trashbin (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 1228910766309255901, guid: dfb79c427d535844cb688621b488d751,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 1228910766309255902, guid: dfb79c427d535844cb688621b488d751,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -681,6 +676,12 @@ PrefabInstance:
       propertyPath: incorrectFeedback
       value: 
       objectReference: {fileID: 1056560312553569273, guid: 835ee239181bd86409f303254574891f,
+        type: 3}
+    - target: {fileID: 1228910766309255903, guid: dfb79c427d535844cb688621b488d751,
+        type: 3}
+      propertyPath: binEffect
+      value: 
+      objectReference: {fileID: 4317029266804052736, guid: 5a9e4c4c14b64094e9b3a4ea6af1288f,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfb79c427d535844cb688621b488d751, type: 3}
@@ -1115,11 +1116,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trashbin (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 1228910766309255901, guid: dfb79c427d535844cb688621b488d751,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 1228910766309255902, guid: dfb79c427d535844cb688621b488d751,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1206,6 +1202,12 @@ PrefabInstance:
       propertyPath: incorrectFeedback
       value: 
       objectReference: {fileID: 1056560312553569273, guid: 835ee239181bd86409f303254574891f,
+        type: 3}
+    - target: {fileID: 1228910766309255903, guid: dfb79c427d535844cb688621b488d751,
+        type: 3}
+      propertyPath: binEffect
+      value: 
+      objectReference: {fileID: 4317029266804052736, guid: 5a9e4c4c14b64094e9b3a4ea6af1288f,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfb79c427d535844cb688621b488d751, type: 3}
@@ -3855,11 +3857,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trashbin (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 1228910766309255901, guid: dfb79c427d535844cb688621b488d751,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 1228910766309255902, guid: dfb79c427d535844cb688621b488d751,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3946,6 +3943,12 @@ PrefabInstance:
       propertyPath: incorrectFeedback
       value: 
       objectReference: {fileID: 1056560312553569273, guid: 835ee239181bd86409f303254574891f,
+        type: 3}
+    - target: {fileID: 1228910766309255903, guid: dfb79c427d535844cb688621b488d751,
+        type: 3}
+      propertyPath: binEffect
+      value: 
+      objectReference: {fileID: 4317029266804052736, guid: 5a9e4c4c14b64094e9b3a4ea6af1288f,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfb79c427d535844cb688621b488d751, type: 3}
@@ -4239,11 +4242,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trashbin
       objectReference: {fileID: 0}
-    - target: {fileID: 1228910766309255901, guid: dfb79c427d535844cb688621b488d751,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 1228910766309255902, guid: dfb79c427d535844cb688621b488d751,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4319,17 +4317,5 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1588675333}
-    - target: {fileID: 1228910766309255903, guid: dfb79c427d535844cb688621b488d751,
-        type: 3}
-      propertyPath: correctFeedback
-      value: 
-      objectReference: {fileID: 4907573138420344621, guid: e0d869664a105b340862051bcab82cb1,
-        type: 3}
-    - target: {fileID: 1228910766309255903, guid: dfb79c427d535844cb688621b488d751,
-        type: 3}
-      propertyPath: incorrectFeedback
-      value: 
-      objectReference: {fileID: 1056560312553569273, guid: 835ee239181bd86409f303254574891f,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfb79c427d535844cb688621b488d751, type: 3}
