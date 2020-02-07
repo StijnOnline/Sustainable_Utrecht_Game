@@ -19,9 +19,9 @@ public class TrafficSpawner : MonoBehaviour {
     [SerializeField] private float truckSpawns = 1f;
 
     private void Start() {
+       
         spawnTimer = beginDelay;
 
-        AudioPlayer.Instance.PlaySound("CarGame_BG", 0.1f);
     }
 
     void Update()

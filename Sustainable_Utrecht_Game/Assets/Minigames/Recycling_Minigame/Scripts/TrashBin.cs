@@ -18,7 +18,7 @@ public class TrashBin : MonoBehaviour {
 
     public void Start()
     {
-        AudioPlayer.Instance.PlaySound("Trashgame_bg", 0.05f);
+        AudioPlayer.Instance.PlaySound("Trashgame_bg", 0.04f);
     }
 
 
