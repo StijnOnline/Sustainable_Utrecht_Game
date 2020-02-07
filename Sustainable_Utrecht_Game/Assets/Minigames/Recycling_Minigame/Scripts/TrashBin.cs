@@ -14,6 +14,13 @@ public class TrashBin : MonoBehaviour {
     [SerializeField] private GameObject correctFeedback = null;
     [SerializeField] private GameObject incorrectFeedback = null;
 
+
+    public void Start()
+    {
+        AudioPlayer.Instance.PlaySound("Trashgame_bg", 0.05f);
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision) {
         Trash trash = collision.GetComponent<Trash>();
         bool correct = trash.trashInfo.correctType == type;
@@ -23,9 +30,11 @@ public class TrashBin : MonoBehaviour {
         }
         if(correct) {
             Destroy( Instantiate(correctFeedback,transform.position,transform.rotation),1f);
+            AudioPlayer.Instance.PlaySound("TrashGame_Correct", 0.1f);
         }
         else{
             Destroy(Instantiate(incorrectFeedback, transform.position, transform.rotation),1f);
+            AudioPlayer.Instance.PlaySound("TrashGame_Fail", 0.1f);
         }
     }
 

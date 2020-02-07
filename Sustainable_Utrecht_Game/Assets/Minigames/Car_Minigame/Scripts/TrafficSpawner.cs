@@ -20,6 +20,8 @@ public class TrafficSpawner : MonoBehaviour {
 
     private void Start() {
         spawnTimer = beginDelay;
+
+        AudioPlayer.Instance.PlaySound("CarGame_BG", 0.1f);
     }
 
     void Update()
