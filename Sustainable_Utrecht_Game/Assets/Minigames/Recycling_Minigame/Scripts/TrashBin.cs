@@ -18,7 +18,7 @@ public class TrashBin : MonoBehaviour {
 
     public void Start()
     {
-        AudioPlayer.Instance.PlaySound("Trashgame_bg", 0.04f);
+        AudioPlayer.Instance.PlaySound("Trashgame_bg", 0.01f);
     }
 
 
@@ -32,11 +32,11 @@ public class TrashBin : MonoBehaviour {
         }
         if(correct) {
             Destroy( Instantiate(correctFeedback,transform.position,transform.rotation),1f);
-            AudioPlayer.Instance.PlaySound("TrashGame_Correct", 0.1f);
+            AudioPlayer.Instance.PlaySound("TrashGame_Correct", 0.4f);
         }
         else{
             Destroy(Instantiate(incorrectFeedback, transform.position, transform.rotation),1f);
-            AudioPlayer.Instance.PlaySound("TrashGame_Fail", 0.1f);
+            AudioPlayer.Instance.PlaySound("TrashGame_Fail", 0.4f);
         }
     }
 
