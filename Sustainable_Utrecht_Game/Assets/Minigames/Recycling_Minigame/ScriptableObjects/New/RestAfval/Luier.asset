@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: fc027a9b346247c408780b049d2ebd48, type: 3}
   correctType: 3
-  explanation: 
+  explanation: "Gooi ze niet in het toilet. Deze kan dan verstopt raken. Gooi luiers
+    ook niet in de biobak. In sommige gemeentes wordt ge\xEBxperimenteerd met het
+    gescheiden inzamelen van luiers voor recycling. Informeer hiernaar bij je gemeente. "

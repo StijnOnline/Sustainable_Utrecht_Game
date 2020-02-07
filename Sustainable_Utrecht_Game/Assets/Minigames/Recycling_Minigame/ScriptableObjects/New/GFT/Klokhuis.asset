@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 266de371a60832f488988c724689149d, type: 3}
   correctType: 2
-  explanation: 
+  explanation: Beschrijving over verschil biobak en composthoop.

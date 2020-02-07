@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 45348192829893042adc7db37a5decc9, type: 3}
   correctType: 3
-  explanation: 
+  explanation: Het aluminium laagje maakt het folie ongeschikt voor plasticrecycling.

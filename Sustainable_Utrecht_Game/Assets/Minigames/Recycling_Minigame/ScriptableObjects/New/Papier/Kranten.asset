@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b3bec177ee9483241a7b3863207d86b1, type: 3}
   correctType: 0
-  explanation: 
+  explanation: Een krant past bij de papier bak.

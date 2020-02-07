@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 56e1622c40b36a54ea5dd9d3fba39f13, type: 3}
   correctType: 0
-  explanation: 
+  explanation: 'Als de pizza verpakt is geweest en de doos geen etensresten bevat. '

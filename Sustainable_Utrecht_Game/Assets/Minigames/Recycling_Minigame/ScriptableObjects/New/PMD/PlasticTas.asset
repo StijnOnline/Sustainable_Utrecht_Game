@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 7cc14fc0a7d79d146b3bb5fd254bffd4, type: 3}
   correctType: 1
-  explanation: 
+  explanation: Een schone plastic kan worden gerecycled.

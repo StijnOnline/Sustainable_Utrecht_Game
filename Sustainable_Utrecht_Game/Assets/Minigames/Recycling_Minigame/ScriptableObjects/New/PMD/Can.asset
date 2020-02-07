@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 6a40eaaf676799e49bb9bda392655d3e, type: 3}
   correctType: 1
-  explanation: 
+  explanation: Lever de verpakkingen zo leeg mogelijk in, dat vergemakkelijkt de
+    sortering en recycling.
