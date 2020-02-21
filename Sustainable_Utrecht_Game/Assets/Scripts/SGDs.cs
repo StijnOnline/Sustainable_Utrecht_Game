@@ -1,0 +1,19 @@
+﻿public enum SGDs {
+    NoPoverty,
+    ZeroHunger,
+    GoodHealthAndWellBeing,
+    QualityEducation,
+    GenderEquality,
+    CleanWaterAndSanitation,
+    AffordableAndCleanEnergy,
+    DecentWorkAndEconomicGrowth,
+    IndustryInnovationAndInfrastructure,
+    RecudedInequalities,
+    SustainableCitiesAndCommunities,
+    ResponsibleConsumptionAndProduction,
+    ClimateAction,
+    LifeBelowWater,
+    LifeOnLand,
+    PeaceJusticeAndStrongInstitutions,
+    PartnershipsForTheGoals
+}

@@ -17,9 +17,11 @@ public class Trash : MonoBehaviour, IDraggable {
 
         SpriteRenderer r = GetComponent<SpriteRenderer>();
         r.sprite = trashInfo.sprite;
-        r.transform.localScale = (targetSize / r.bounds.size.y) * r.transform.localScale;
+        float size = Mathf.Max(r.bounds.size.x ,r.bounds.size.y);
+
+        r.transform.localScale = (targetSize /  size) * r.transform.localScale;
         trail.localScale = 2f *  trail.localScale / trail.lossyScale.y;
-        coll.radius = 1.5f *  targetSize * Mathf.Max(r.bounds.size.x, r.bounds.size.y);
+        coll.radius =  (0.8f / r.transform.localScale.x);
     }
 
     public void Drop() {
@@ -38,9 +40,9 @@ public class Trash : MonoBehaviour, IDraggable {
     }
 
     public enum TrashType {
-        Paper,
-        Plastic,
-        Green,
-        Other
+        Papier,
+        PMD,
+        GFT,
+        RestAfval
     }
 }

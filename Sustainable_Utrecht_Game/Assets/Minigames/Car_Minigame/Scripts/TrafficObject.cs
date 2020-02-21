@@ -66,12 +66,15 @@ public class TrafficObject : MonoBehaviour, IClickable {
         if(HP <= 0) {
             switch(type) {
                 case TrafficType.Bike:
+                    AudioPlayer.Instance.PlaySound("CarGame_BikeFall", 0.4f);
                     break;
                 case TrafficType.Car:
                     SetType(TrafficType.Bike);
+                    AudioPlayer.Instance.PlaySound("CarGame_BikeBell", 0.4f);
                     break;
                 case TrafficType.Truck:
                     SetType(TrafficType.Car);
+                    AudioPlayer.Instance.PlaySound("CarGame_Car", 0.4f);
                     break;
                 default:
                     break;

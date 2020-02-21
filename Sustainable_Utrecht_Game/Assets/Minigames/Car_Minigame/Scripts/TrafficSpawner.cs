@@ -19,7 +19,9 @@ public class TrafficSpawner : MonoBehaviour {
     [SerializeField] private float truckSpawns = 1f;
 
     private void Start() {
+       
         spawnTimer = beginDelay;
+
     }
 
     void Update()
