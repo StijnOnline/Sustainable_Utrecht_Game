@@ -34,7 +34,6 @@ public class RecycleGameManager : MonoBehaviour {
     private bool playing = true;
 
     private void Start() {
-        Screen.orientation = ScreenOrientation.LandscapeLeft;
 
         timer = maxTime;
         SpawnTrash();

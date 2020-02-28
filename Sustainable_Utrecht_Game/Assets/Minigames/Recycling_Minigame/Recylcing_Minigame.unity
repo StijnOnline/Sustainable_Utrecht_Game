@@ -204,7 +204,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 67.15
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1873,6 +1873,7 @@ GameObject:
   - component: {fileID: 829663214}
   - component: {fileID: 829663213}
   - component: {fileID: 829663212}
+  - component: {fileID: 829663215}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1945,6 +1946,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &829663215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829663211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4154a4f79b2794e4992a929204b8e8bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screenOrientation: 3
 --- !u!1 &842112476
 GameObject:
   m_ObjectHideFlags: 0
@@ -3600,7 +3614,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   dragging: 1
-  mouse: 1
 --- !u!1 &1609831098
 GameObject:
   m_ObjectHideFlags: 0

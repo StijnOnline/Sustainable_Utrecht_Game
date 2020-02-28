@@ -19,9 +19,6 @@ public class CarMinigameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI carCountText = null;
     [SerializeField] private TextMeshProUGUI bikeCountText = null;
 
-    private void Start() {
-        Screen.orientation = ScreenOrientation.LandscapeLeft;
-    }
 
     public void Spawned() {
         spawnCount++;
