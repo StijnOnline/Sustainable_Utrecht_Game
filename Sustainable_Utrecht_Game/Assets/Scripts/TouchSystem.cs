@@ -64,7 +64,8 @@ public class TouchSystem : MonoBehaviour {
 
 
         if((Input.touchCount > 0 && touch.phase == TouchPhase.Began) || Input.GetMouseButtonDown(0)) {
-            startTouch.Invoke(pos);
+            if(startTouch != null)
+                startTouch.Invoke(pos);
 
             Ray touchRay = new Ray(Vector3.forward, touchedPos);
             RaycastHit2D hit = Physics2D.Raycast(touchedPos, Vector2.zero, Mathf.Infinity, tappableMask);
