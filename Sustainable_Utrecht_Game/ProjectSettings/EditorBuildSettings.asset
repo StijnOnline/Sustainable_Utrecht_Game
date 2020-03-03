@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Minigames/House_Minigame/House_Minigame.unity
+    guid: 8780560baabae9c45997f812512f3ef2
+  - enabled: 1
     path: Assets/Start.unity
     guid: 68fb8473d661a9e44bdc7bd54fc4c1fe
   - enabled: 1
