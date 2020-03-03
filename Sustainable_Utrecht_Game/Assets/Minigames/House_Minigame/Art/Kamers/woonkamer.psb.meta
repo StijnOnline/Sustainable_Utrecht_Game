@@ -1,0 +1,358 @@
+fileFormatVersion: 2
+guid: 437ac6b23ae134e409e64f1c3b3a870e
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    isReadable: 0
+    streamingMipmaps: 1
+    streamingMipmapsPriority: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+  spriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 0, y: 0}
+  mosaicSpriteImportData: []
+  rigSpriteImportData:
+  - name: -niet interactief-
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3102
+      y: 4
+      width: 142
+      height: 480
+    spriteID: cc42afb7ac11c0249b7c32755e4313de
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 2914, y: -96}
+  - name: hanglamp aan
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2089
+      y: 4
+      width: 614
+      height: 532
+    spriteID: 3d9ce31696966a143af9ba250e1c1d02
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 1300, y: -445}
+  - name: hanglamp uit
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3252
+      y: 161
+      width: 207
+      height: 182
+    spriteID: 088a8a9a13b4cc64f82f6754238b5684
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 2260, y: -638}
+  - name: lamp uit
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2924
+      y: 262
+      width: 91
+      height: 134
+    spriteID: 901afbf9c9dc36d48aaac2135ae43e49
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 1569, y: -294}
+  - name: lamp aan
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2711
+      y: 262
+      width: 205
+      height: 211
+    spriteID: 0264379b7f1af704cba560dc9d04f7df
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 1413, y: -281}
+  - name: airco
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3252
+      y: 4
+      width: 419
+      height: 149
+    spriteID: f6fae7fbb6a473f49ae6ffe74e2f4127
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 1742, y: -826}
+  - name: tv uit
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2711
+      y: 4
+      width: 383
+      height: 250
+    spriteID: fba4ed96c911ac1469dbb0dbdbcf97b7
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 1191, y: -289}
+  - name: "slaapkamer 2\_+\_lamp uit\_+\_lamp aan\_+\_playstation uit\_+\_playstation
+      aan\_+\_Laag 16\_+\_slaapkamer1\_+\_lamp aan\_+\_lamp uit\_+\_bureaulamp uit\_+\_bureaulamp
+      aan\_+\_studeerkamer\_+\_pc uit\_+\_pc aan\_+\_bureaulamp uit\_+\_bureaulamp
+      aan\_+\_woonkamer\_+\_verwarming\_+\_stalamp..."
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 2077
+      height: 1006
+    spriteID: 68422fdb1e344ca4f959c503eb9bc876
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 4}
+  platformSettings: []
+  mosaicLayers: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  importedTextureWidth: 2048
+  importedTextureHeight: 2048
+  documentSize: {x: 2077, y: 1006}
+  paperDollMode: 0
+  keepDupilcateSpriteName: 0
+  spriteCategoryList:
+    categories: []
+  textureActualWidth: 4096
+  textureActualHeight: 4096
+  spritePackingTag: 
+  resliceFromLayer: 0
+  characterMode: 1
+  mosaicPSDLayers: []
+  rigPSDLayers:
+  - name: -niet interactief-
+    spriteName: -niet interactief-
+    isGroup: 0
+    parentIndex: -1
+    spriteID: cc42afb7ac11c0249b7c32755e4313de
+    layerID: 96
+    mosaicPosition: {x: 3102, y: 4}
+  - name: hanglamp aan
+    spriteName: hanglamp aan
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 3d9ce31696966a143af9ba250e1c1d02
+    layerID: 66
+    mosaicPosition: {x: 2089, y: 4}
+  - name: hanglamp uit
+    spriteName: hanglamp uit
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 088a8a9a13b4cc64f82f6754238b5684
+    layerID: 59
+    mosaicPosition: {x: 3252, y: 161}
+  - name: lamp uit
+    spriteName: lamp uit
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 901afbf9c9dc36d48aaac2135ae43e49
+    layerID: 39
+    mosaicPosition: {x: 2924, y: 262}
+  - name: lamp aan
+    spriteName: lamp aan
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 0264379b7f1af704cba560dc9d04f7df
+    layerID: 53
+    mosaicPosition: {x: 2711, y: 262}
+  - name: airco
+    spriteName: airco
+    isGroup: 0
+    parentIndex: -1
+    spriteID: f6fae7fbb6a473f49ae6ffe74e2f4127
+    layerID: 28
+    mosaicPosition: {x: 3252, y: 4}
+  - name: tv uit
+    spriteName: tv uit
+    isGroup: 0
+    parentIndex: -1
+    spriteID: fba4ed96c911ac1469dbb0dbdbcf97b7
+    layerID: 16
+    mosaicPosition: {x: 2711, y: 4}
+  - name: "slaapkamer 2\_+\_lamp uit\_+\_lamp aan\_+\_playstation uit\_+\_playstation
+      aan\_+\_Laag 16\_+\_slaapkamer1\_+\_lamp aan\_+\_lamp uit\_+\_bureaulamp uit\_+\_bureaulamp
+      aan\_+\_studeerkamer\_+\_pc uit\_+\_pc aan\_+\_bureaulamp uit\_+\_bureaulamp
+      aan\_+\_woonkamer\_+\_verwarming\_+\_stalamp..."
+    spriteName: "slaapkamer 2\_+\_lamp uit\_+\_lamp aan\_+\_playstation uit\_+\_playstation
+      aan\_+\_Laag 16\_+\_slaapkamer1\_+\_lamp aan\_+\_lamp uit\_+\_bureaulamp uit\_+\_bureaulamp
+      aan\_+\_studeerkamer\_+\_pc uit\_+\_pc aan\_+\_bureaulamp uit\_+\_bureaulamp
+      aan\_+\_woonkamer\_+\_verwarming\_+\_stalamp..."
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 68422fdb1e344ca4f959c503eb9bc876
+    layerID: 2
+    mosaicPosition: {x: 4, y: 4}
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+  generateGOHierarchy: 0
+  textureAssetName: woonkamer Texture
+  prefabAssetName: woonkamer Prefab
+  spriteLibAssetName: woonkamer Sprite Lib
+  secondarySpriteTextures: []
