@@ -21,14 +21,17 @@ public class TouchSystem : MonoBehaviour {
     }
 
     public System.Action<Vector2> startTouch;
+    public System.Action inversePinch;
 
     [Header("Settings")]
     [SerializeField] private LayerMask tappableMask = 0;
     [SerializeField] private LayerMask draggableMask = 0;
     [SerializeField] private bool dragging = false;
+    [SerializeField] private float MinInversePinchDist = 0.1f;
 
     public bool touching { get; private set; } = false;
     public Vector2 lastTouchedScreenPos { get; private set; }
+    public Vector2 TouchedScreenPosMoved { get; private set; }
 
     private IDraggable draggingObject;
 
@@ -59,6 +62,8 @@ public class TouchSystem : MonoBehaviour {
             touching = true;
         }
         pos = Input.mousePosition;
+        
+        TouchedScreenPosMoved = touch.phase != TouchPhase.Began ? (lastTouchedScreenPos - pos) : Vector2.zero;
         lastTouchedScreenPos = pos;
         Vector3 touchedPos = Camera.main.ScreenToWorldPoint(new Vector3(pos.x, pos.y, 100000));
 
@@ -111,7 +116,13 @@ public class TouchSystem : MonoBehaviour {
             draggingObject.UpdatePos(touchedPos);
         }
 
-
+        if(Input.touchCount > 0 && (int)Input.GetTouch(0).phase > 2 && (int)Input.GetTouch(1).phase > 2) {
+            Debug.Log("bep");
+            if((Input.GetTouch(0).position - Input.GetTouch(1).position).magnitude / Screen.width > MinInversePinchDist){
+                Debug.Log("bop");
+                inversePinch.Invoke();
+            }
+        }
 
 
 

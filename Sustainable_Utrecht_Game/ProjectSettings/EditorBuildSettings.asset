@@ -6,15 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/3d_City/City.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 0
+    path: Assets/Scenes/Start.unity
+    guid: 68fb8473d661a9e44bdc7bd54fc4c1fe
+  - enabled: 0
     path: Assets/Minigames/House_Minigame/House_Minigame.unity
     guid: 8780560baabae9c45997f812512f3ef2
-  - enabled: 1
-    path: Assets/Start.unity
-    guid: 68fb8473d661a9e44bdc7bd54fc4c1fe
-  - enabled: 1
+  - enabled: 0
     path: Assets/Minigames/Recycling_Minigame/Recylcing_Minigame.unity
     guid: 8d7e7d50a2664b04f9a94db5c0b093be
-  - enabled: 1
+  - enabled: 0
     path: Assets/Minigames/Car_Minigame/Car_Minigame.unity
     guid: 804935f3a9e5e894cbda37d0c6838d94
   m_configObjects: {}
