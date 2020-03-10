@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class CameraControl : MonoBehaviour {
     [SerializeField] private TouchSystem touchSystem;
     [SerializeField] private float rotateSpeed;
+    [SerializeField] private float zoomSpeed;
+    [SerializeField] private float moveSpeed;
     [SerializeField] private Transform cameraTarget;
 
     [SerializeField] private CityInterestPoint cityCentre;
@@ -18,8 +20,10 @@ public class CameraControl : MonoBehaviour {
     [SerializeField] private float doubleClickTime;
 
     private bool zoomed = false;
+    private Animator animator;
 
     void Start() {
+        animator = GetComponent<Animator>();
         touchSystem.startTouch += touch;
         touchSystem.inversePinch += ZoomOut;
         currentTarget = cityCentre;
@@ -28,13 +32,17 @@ public class CameraControl : MonoBehaviour {
 
 
     void Update() {
-        cameraTarget.position = Vector3.Lerp(cameraTarget.position, currentTarget.transform.position, 0.1f);
-        Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, currentTarget.targetZoom, 0.1f);
-        if(touchSystem.touching) {
-            cameraTarget.Rotate(new Vector3(0, touchSystem.TouchedScreenPosMoved.x * rotateSpeed, 0), Space.World);
-        }
-        if(Input.GetKeyDown(KeyCode.Escape)) {
-            ZoomOut();
+        AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
+        if(animationState.normalizedTime > 1) {
+            animator.enabled = false;
+            cameraTarget.position = Vector3.Lerp(cameraTarget.position, currentTarget.transform.position, moveSpeed);
+            Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, currentTarget.targetZoom, zoomSpeed);
+            if(touchSystem.touching) {
+                cameraTarget.Rotate(new Vector3(0, touchSystem.TouchedScreenPosMoved.x * rotateSpeed, 0), Space.World);
+            }
+            if(Input.GetKeyDown(KeyCode.Escape)) {
+                ZoomOut();
+            }
         }
     }
 
