@@ -7,6 +7,7 @@ using TMPro;
 
 public class RecycleGameManager : MonoBehaviour {
     [SerializeField] private GameObject trashPrefab = null;
+    [SerializeField] private Catapult catapult = null;
     [SerializeField] private TrashInfo[] trashObjects = null;
     [SerializeField] private TrashBin[] bins = null;
     [SerializeField] private Transform spawnPos = null;
@@ -86,6 +87,7 @@ public class RecycleGameManager : MonoBehaviour {
         Trash tr = g.GetComponent<Trash>();
         tr.trashInfo = trashObjects[Random.Range(0, trashObjects.Length)];
         tr.Init();
+        catapult.projectile = g.GetComponent<Rigidbody2D>();
 
         int t = (int)tr.trashInfo.correctType;
 
