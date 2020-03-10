@@ -63,7 +63,7 @@ public class TouchSystem : MonoBehaviour {
         }
         pos = Input.mousePosition;
         
-        TouchedScreenPosMoved = touch.phase != TouchPhase.Began ? (lastTouchedScreenPos - pos) : Vector2.zero;
+        TouchedScreenPosMoved = (touch.phase != TouchPhase.Began || ! Input.GetMouseButtonDown(0)) ? (lastTouchedScreenPos - pos) : Vector2.zero;
         lastTouchedScreenPos = pos;
         Vector3 touchedPos = Camera.main.ScreenToWorldPoint(new Vector3(pos.x, pos.y, 100000));
 

@@ -29,6 +29,7 @@ public class CameraControl : MonoBehaviour {
         cameraTarget.position = Vector3.Lerp(cameraTarget.position, currentTarget.transform.position, 0.1f);
         Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, currentTarget.targetZoom, 0.1f);
         if(touchSystem.touching) {
+            Debug.Log(touchSystem.TouchedScreenPosMoved.x);
             cameraTarget.Rotate(new Vector3(0, touchSystem.TouchedScreenPosMoved.x * rotateSpeed, 0), Space.World);
         }
     }
