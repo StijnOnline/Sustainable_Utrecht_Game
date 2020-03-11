@@ -40,7 +40,7 @@ public class TrashBin : MonoBehaviour {
         }
     }
 
-    public void SetType(Trash.TrashType type) {
+    /*public void SetType(Trash.TrashType type) {
         this.type = type;
         switch(type) {
             case Trash.TrashType.Papier:
@@ -58,5 +58,5 @@ public class TrashBin : MonoBehaviour {
             default:
                 break;
         }
-    }
+    }*/
 }

@@ -7,15 +7,15 @@ using TMPro;
 
 public class RecycleGameManager : MonoBehaviour {
     [SerializeField] private GameObject trashPrefab = null;
-    [SerializeField] private Catapult catapult = null;
+    [SerializeField] private SlingShot slingShot = null;
     [SerializeField] private TrashInfo[] trashObjects = null;
     [SerializeField] private TrashBin[] bins = null;
-    [SerializeField] private Transform spawnPos = null;
     [SerializeField] private TextMeshProUGUI timerText = null;
     [SerializeField] private TextMeshProUGUI timeLossText = null;
 
     [SerializeField] private float maxTime = 60f;
     [SerializeField] private float lossTime = 10f;
+    [SerializeField] private float binDist = 2f;
     public List<TrashInfo> correctTrash = null;
     public TrashInfo lastIncorrectTrash = null;
     [Header("CorrectScreen")]
@@ -83,19 +83,44 @@ public class RecycleGameManager : MonoBehaviour {
     private void SpawnTrash() {
         if(!playing)
             return;
-        GameObject g = Instantiate(trashPrefab, spawnPos.position, spawnPos.rotation);
+        GameObject g = Instantiate(trashPrefab, slingShot.transform.position, slingShot.transform.rotation);
+        
+        Rigidbody2D rb = g.GetComponent<Rigidbody2D>();
+        rb.constraints = RigidbodyConstraints2D.None;
+        slingShot.projectile = rb;
+
         Trash tr = g.GetComponent<Trash>();
         tr.trashInfo = trashObjects[Random.Range(0, trashObjects.Length)];
         tr.Init();
-        catapult.projectile = g.GetComponent<Rigidbody2D>();
-
         int t = (int)tr.trashInfo.correctType;
 
-        int r = Random.Range(0, 4);
+        /*int r = Random.Range(0, 4);
         for(int i = 0; i < 4; i++) {
-            bins[i].SetType((Trash.TrashType)((r + i) % 4));
+            bins[i]?.SetType((Trash.TrashType)((r + i) % 4));
+            
+        }*/
+
+        MoveBins();
+    }
+
+    private void MoveBins() {
+        IEnumerable positions = UniqueRandom(0, 3);
+        int n = 0;
+        foreach(int pos in positions) {
+            bins[pos].transform.localPosition = new Vector3(n* binDist,0,0);
+            n++;
         }
     }
+
+    /*private IEnumerator MoveBins() {
+        int steps = 5;
+        IEnumerable positions = UniqueRandom(0, 4);
+        int n = 0;
+        foreach(int pos in positions) {
+            bins[pos].transform.localPosition = Vector3.Lerp(bins[pos].transform.localPosition, Vector3(),1/steps);
+            n++;
+        }
+    }*/
 
     private IEnumerator CorrectScreen() {
         correctCountText.SetText("Correct: " + correctTrash.Count + " item(s)");
@@ -113,6 +138,7 @@ public class RecycleGameManager : MonoBehaviour {
         correctScreen.SetActive(false);
         itemImage.sprite = lastIncorrectTrash.sprite;
         incorrectMesssage.SetText(lastIncorrectTrash.explanation);
+        //UGLY
         switch(lastIncorrectTrash.correctType) {
             case Trash.TrashType.Papier:
                 corrertBinImage.sprite = bins[0].paperSprite;
@@ -137,6 +163,19 @@ public class RecycleGameManager : MonoBehaviour {
 
     public void Restart() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    IEnumerable<int> UniqueRandom(int minInclusive, int maxInclusive) {
+        List<int> candidates = new List<int>();
+        for(int i = minInclusive; i <= maxInclusive; i++) {
+            candidates.Add(i);
+        }
+        System.Random rnd = new System.Random();
+        while(candidates.Count > 0) {
+            int index = rnd.Next(candidates.Count);
+            yield return candidates[index];
+            candidates.RemoveAt(index);
+        }
     }
 
 }
