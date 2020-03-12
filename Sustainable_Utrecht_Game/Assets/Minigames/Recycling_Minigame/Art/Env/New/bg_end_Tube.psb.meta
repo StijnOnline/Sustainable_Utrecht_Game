@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 04c072bbabff8bc40abcd7ed2ccae572
+guid: 009235fe8cf1031459a0956bea5249a5
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -86,95 +86,7 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: Lamp2Aan
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1398
-      y: 4
-      width: 111
-      height: 113
-    spriteID: 7e7f9067b5438ac4fb6fb825cb86cc78
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 378, y: -599}
-  - name: Lamp1Aan
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1398
-      y: 125
-      width: 110
-      height: 113
-    spriteID: 07d4474e3a38c6b4aa66b130bca39c3f
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 654, y: -478}
-  - name: Lamp2Uit
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1398
-      y: 246
-      width: 50
-      height: 72
-    spriteID: 0fdcd570b37da6143989b40a261a2ef4
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 624, y: -363}
-  - name: Lamp1Uit
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1398
-      y: 326
-      width: 49
-      height: 72
-    spriteID: 820ab5b993f640445b8b1e9213ab8ee3
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 347, y: -283}
-  - name: Kamer
+  - name: Front
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -183,9 +95,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 1386
-      height: 1000
-    spriteID: ee5be183c9835fd48ac4f35b28518261
+      width: 3174
+      height: 2818
+    spriteID: a45f7f85420657e4098adc3e5b236701
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -195,7 +107,29 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: 4, y: -416}
+  - name: Back
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 2830
+      width: 2505
+      height: 409
+    spriteID: 57ce943ede902b240bacdee0b1d0e19a
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -334, y: 2815}
   platformSettings: []
   mosaicLayers: 1
   documentPivot: {x: 0, y: 0}
@@ -203,60 +137,39 @@ ScriptedImporter:
   importHiddenLayers: 0
   importedTextureWidth: 2048
   importedTextureHeight: 2048
-  documentSize: {x: 1386, y: 1000}
+  documentSize: {x: 3176, y: 3238}
   paperDollMode: 0
   keepDupilcateSpriteName: 0
   spriteCategoryList:
     categories: []
-  textureActualWidth: 2048
-  textureActualHeight: 2048
+  textureActualWidth: 4096
+  textureActualHeight: 4096
   spritePackingTag: 
   resliceFromLayer: 0
   characterMode: 1
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: Lamp2Aan
-    spriteName: Lamp2Aan
+  - name: Front
+    spriteName: Front
     isGroup: 0
     parentIndex: -1
-    spriteID: 7e7f9067b5438ac4fb6fb825cb86cc78
-    layerID: 7
-    mosaicPosition: {x: 1398, y: 4}
-  - name: Lamp1Aan
-    spriteName: Lamp1Aan
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 07d4474e3a38c6b4aa66b130bca39c3f
-    layerID: 6
-    mosaicPosition: {x: 1398, y: 125}
-  - name: Lamp2Uit
-    spriteName: Lamp2Uit
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 0fdcd570b37da6143989b40a261a2ef4
-    layerID: 17
-    mosaicPosition: {x: 1398, y: 246}
-  - name: Lamp1Uit
-    spriteName: Lamp1Uit
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 820ab5b993f640445b8b1e9213ab8ee3
-    layerID: 16
-    mosaicPosition: {x: 1398, y: 326}
-  - name: Kamer
-    spriteName: Kamer
-    isGroup: 0
-    parentIndex: -1
-    spriteID: ee5be183c9835fd48ac4f35b28518261
-    layerID: 15
+    spriteID: a45f7f85420657e4098adc3e5b236701
+    layerID: 9
     mosaicPosition: {x: 4, y: 4}
+  - name: Back
+    spriteName: Back
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 57ce943ede902b240bacdee0b1d0e19a
+    layerID: 12
+    mosaicPosition: {x: 4, y: 2830}
   characterData:
     bones: []
     parts: []
     dimension: {x: 0, y: 0}
     characterGroups: []
-  generateGOHierarchy: 1
-  textureAssetName: Badkamer1 (1) Texture
-  prefabAssetName: Badkamer1 (1) Prefab
-  spriteLibAssetName: Badkamer1 (1) Sprite Lib
+  generateGOHierarchy: 0
+  textureAssetName: bg_end_Tube Texture
+  prefabAssetName: bg_end_Tube Prefab
+  spriteLibAssetName: bg_end_Tube Sprite Lib
   secondarySpriteTextures: []

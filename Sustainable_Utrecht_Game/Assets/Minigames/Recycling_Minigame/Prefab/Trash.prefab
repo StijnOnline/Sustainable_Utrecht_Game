@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2277542038238730737}
   - component: {fileID: -4984221512080892567}
   - component: {fileID: 2277542038238730738}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Trash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -134,7 +134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548db318b19f5854eae5dfe31effa652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flickSpeedModifier: 6
   trashInfo: {fileID: 0}
 --- !u!1001 &7475517605424081904
 PrefabInstance:

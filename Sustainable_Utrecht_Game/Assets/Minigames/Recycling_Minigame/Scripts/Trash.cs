@@ -21,6 +21,7 @@ public class Trash : MonoBehaviour {
         coll.radius =  (0.8f / r.transform.localScale.x);
     }
 
+
     public enum TrashType {
         Papier,
         PMD,

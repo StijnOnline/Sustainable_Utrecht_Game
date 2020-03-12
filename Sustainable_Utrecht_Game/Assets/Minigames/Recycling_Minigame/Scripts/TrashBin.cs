@@ -6,7 +6,7 @@ public class TrashBin : MonoBehaviour {
     [SerializeField] private Trash.TrashType type;
     [SerializeField] private RecycleGameManager gameManager = null;
 
-    [SerializeField] private SpriteRenderer spriteRenderer=null;
+    //[SerializeField] private SpriteRenderer spriteRenderer=null;
     [SerializeField] public Sprite paperSprite=null;
     [SerializeField] public Sprite plasticSprite=null;
     [SerializeField] public Sprite greenSprite =null;
@@ -16,29 +16,42 @@ public class TrashBin : MonoBehaviour {
     [SerializeField] private GameObject incorrectFeedback = null;
 
 
-    public void Start()
-    {
-        AudioPlayer.Instance.PlaySound("Trashgame_bg", 0.01f);
-    }
 
 
     private void OnTriggerEnter2D(Collider2D collision) {
         Trash trash = collision.GetComponent<Trash>();
         bool correct = trash.trashInfo.correctType == type;
         if(trash != null) {
-            gameManager.NextTrash(correct, trash.trashInfo);
-            Destroy(Instantiate(binEffect, transform.position, transform.rotation), 1f);
-            Destroy(trash.gameObject);
+            //gameManager.StopAllCoroutines();
+            StartCoroutine( gameManager.NextTrash(correct, trash.trashInfo));
+            //Destroy(Instantiate(binEffect, transform.position, transform.rotation), 1f);
+            
+
+            
+            trash.transform.position = new Vector3(transform.position.x, trash.transform.position.y, trash.transform.position.y);
+            trash.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            trash.GetComponent<Renderer>().sortingOrder = 5;
+            Destroy(trash.gameObject, 1f);
+
+            StartCoroutine(FeedBack(correct));
         }
+
+
+       
+    }
+
+    IEnumerator FeedBack(bool correct) {
+        yield return new WaitForSeconds(1);
         if(correct) {
-            Destroy( Instantiate(correctFeedback,transform.position,transform.rotation),1f);
+            Destroy(Instantiate(correctFeedback, transform.position, transform.rotation), 1f);
             AudioPlayer.Instance.PlaySound("TrashGame_Correct", 0.4f);
-        }
-        else{
-            Destroy(Instantiate(incorrectFeedback, transform.position, transform.rotation),1f);
+        } else {
+            Destroy(Instantiate(incorrectFeedback, transform.position, transform.rotation), 1f);
             AudioPlayer.Instance.PlaySound("TrashGame_Fail", 0.4f);
         }
     }
+
+    
 
     /*public void SetType(Trash.TrashType type) {
         this.type = type;

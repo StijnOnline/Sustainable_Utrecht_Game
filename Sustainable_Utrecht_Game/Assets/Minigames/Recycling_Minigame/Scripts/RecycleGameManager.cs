@@ -18,6 +18,10 @@ public class RecycleGameManager : MonoBehaviour {
     [SerializeField] private float binDist = 2f;
     public List<TrashInfo> correctTrash = null;
     public TrashInfo lastIncorrectTrash = null;
+
+    public float targetHeight = 3;
+
+    public float shrinkPercentage = 0.3f;
     [Header("CorrectScreen")]
     [SerializeField] private TextMeshProUGUI correctCountText=null;
     public GameObject correctScreen = null;
@@ -34,25 +38,44 @@ public class RecycleGameManager : MonoBehaviour {
 
     private bool playing = true;
 
-    private void Start() {
+    public Coroutine shrinkRoutine;
+    public LayerMask defaultLayer;
 
+    private void Start() {
         timer = maxTime;
         SpawnTrash();
+        AudioPlayer.Instance.PlaySound("Trashgame_bg", 0.01f);
     }
 
     private void Update() {
         if(playing) {
             timer -= Time.deltaTime;
             if(timer < 0) { 
-            playing = false;
+                playing = false;
                 StartCoroutine(CorrectScreen());
-        }
+            }
             string t = Mathf.FloorToInt(timer / 60) + ":" + Mathf.FloorToInt(timer % 60f).ToString("00");
             timerText.SetText(t);
         }
     }
 
-    public void NextTrash(bool wasCorrect,TrashInfo trashInfo) {
+    public IEnumerator Shrink(Trash projectile) {
+        Vector3 startScale = projectile.transform.localScale;
+        while(projectile.transform.position.y < targetHeight) {
+            projectile.transform.localScale = startScale * (1 - (shrinkPercentage * Mathf.InverseLerp(transform.position.y, targetHeight, projectile.transform.position.y)));
+            yield return 0;
+        }
+        projectile.GetComponent<Rigidbody2D>().gravityScale = 1f;
+        yield return new WaitForSeconds(1);
+        projectile.gameObject.layer = defaultLayer;
+        StartCoroutine( NextTrash(false, projectile.trashInfo));
+        
+    }
+
+    public IEnumerator NextTrash(bool wasCorrect,TrashInfo trashInfo) {
+            StopCoroutine(shrinkRoutine);
+        yield return new WaitForSeconds(1f);
+
         if(wasCorrect) {
             correctCount++;
             correctTrash.Add(  trashInfo);
@@ -62,11 +85,8 @@ public class RecycleGameManager : MonoBehaviour {
             DisplayLoss();
 
         }
-
-        Invoke("SpawnTrash",0.7f);
-        
-    
-    
+        yield return new WaitForSeconds(1f);
+        SpawnTrash();      
     }
 
     private void DisplayLoss() {
@@ -85,13 +105,14 @@ public class RecycleGameManager : MonoBehaviour {
             return;
         GameObject g = Instantiate(trashPrefab, slingShot.transform.position, slingShot.transform.rotation);
         
-        Rigidbody2D rb = g.GetComponent<Rigidbody2D>();
-        rb.constraints = RigidbodyConstraints2D.None;
-        slingShot.projectile = rb;
+        
 
         Trash tr = g.GetComponent<Trash>();
         tr.trashInfo = trashObjects[Random.Range(0, trashObjects.Length)];
         tr.Init();
+
+        slingShot.projectile = tr;
+
         int t = (int)tr.trashInfo.correctType;
 
         /*int r = Random.Range(0, 4);
