@@ -160,7 +160,7 @@ public class RecycleGameManager : MonoBehaviour {
         itemImage.sprite = lastIncorrectTrash.sprite;
         incorrectMesssage.SetText(lastIncorrectTrash.explanation);
         //UGLY
-        switch(lastIncorrectTrash.correctType) {
+        /*switch(lastIncorrectTrash.correctType) {
             case Trash.TrashType.Papier:
                 corrertBinImage.sprite = bins[0].paperSprite;
                 break;
@@ -175,7 +175,7 @@ public class RecycleGameManager : MonoBehaviour {
                 break;
             default:
                 break;
-        }
+        }*/
 
         
         incorrectScreen.SetActive(true);

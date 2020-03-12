@@ -7,10 +7,10 @@ public class TrashBin : MonoBehaviour {
     [SerializeField] private RecycleGameManager gameManager = null;
 
     //[SerializeField] private SpriteRenderer spriteRenderer=null;
-    [SerializeField] public Sprite paperSprite=null;
+    /*[SerializeField] public Sprite paperSprite=null;
     [SerializeField] public Sprite plasticSprite=null;
     [SerializeField] public Sprite greenSprite =null;
-    [SerializeField] public Sprite otherSprite = null;
+    [SerializeField] public Sprite otherSprite = null;*/
     [SerializeField] private GameObject binEffect = null;
     [SerializeField] private GameObject correctFeedback = null;
     [SerializeField] private GameObject incorrectFeedback = null;
