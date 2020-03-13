@@ -14,6 +14,8 @@ public class SlingShot : MonoBehaviour, IDraggable {
         projectile.GetComponent<Rigidbody2D>().AddForce(aimDir.normalized * velocity, ForceMode2D.Impulse);
         line.SetActive(false);
         gameManager.shrinkRoutine = StartCoroutine(gameManager.Shrink(projectile));
+
+        GetComponent<Collider2D>().enabled = false;
     }    
 
     public void Pick() {

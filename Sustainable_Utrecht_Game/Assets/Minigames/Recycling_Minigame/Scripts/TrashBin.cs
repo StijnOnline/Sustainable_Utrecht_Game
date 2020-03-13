@@ -25,12 +25,12 @@ public class TrashBin : MonoBehaviour {
             //gameManager.StopAllCoroutines();
             StartCoroutine( gameManager.NextTrash(correct, trash.trashInfo));
             //Destroy(Instantiate(binEffect, transform.position, transform.rotation), 1f);
-            
 
-            
+
+            trash.GetComponent<Renderer>().sortingOrder = 3;
+
             trash.transform.position = new Vector3(transform.position.x, trash.transform.position.y, trash.transform.position.y);
             trash.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-            trash.GetComponent<Renderer>().sortingOrder = 5;
             Destroy(trash.gameObject, 1f);
 
             StartCoroutine(FeedBack(correct));

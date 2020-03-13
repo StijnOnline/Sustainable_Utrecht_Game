@@ -10,30 +10,39 @@ public class RecycleGameManager : MonoBehaviour {
     [SerializeField] private SlingShot slingShot = null;
     [SerializeField] private TrashInfo[] trashObjects = null;
     [SerializeField] private TrashBin[] bins = null;
-    [SerializeField] private TextMeshProUGUI timerText = null;
-    [SerializeField] private TextMeshProUGUI timeLossText = null;
 
-    [SerializeField] private float maxTime = 60f;
-    [SerializeField] private float lossTime = 10f;
     [SerializeField] private float binDist = 2f;
-    public List<TrashInfo> correctTrash = null;
-    public TrashInfo lastIncorrectTrash = null;
+    [SerializeField] private List<TrashInfo> correctTrash = null;
+    [SerializeField] private TrashInfo lastIncorrectTrash = null;
 
-    public float targetHeight = 3;
+    [SerializeField] private float targetHeight = 3;
 
-    public float shrinkPercentage = 0.3f;
+    [SerializeField] private float shrinkPercentage = 0.3f;
+
+
+    [Header("Gnomes")]
+    [SerializeField] private float gnomeDist = 2f;
+    [SerializeField] private GameObject gnomePrefab;
+    private List<Transform> gnomes = new List<Transform>();
+    [SerializeField] private Transform gnomeSpawnPos;
+
+
+
+
     [Header("CorrectScreen")]
-    [SerializeField] private TextMeshProUGUI correctCountText=null;
+    [SerializeField] private TextMeshProUGUI correctCountText = null;
     public GameObject correctScreen = null;
     public RectTransform correctList = null;
     public RectTransform menuItem = null;
     [Header("InCorrectScreen")]
     public GameObject incorrectScreen = null;
     [SerializeField] private TextMeshProUGUI incorrectMesssage = null;
+    [SerializeField] private TextMeshProUGUI trashLeftText = null;
     public Image itemImage = null;
     public Image corrertBinImage = null;
 
-    private float timer = 0;
+    [SerializeField] private int trashCount;
+    private int currentTrashCount = 0;
     private int correctCount = 0;
 
     private bool playing = true;
@@ -42,22 +51,24 @@ public class RecycleGameManager : MonoBehaviour {
     public LayerMask defaultLayer;
 
     private void Start() {
-        timer = maxTime;
+        SpawnGnomes();
         SpawnTrash();
         AudioPlayer.Instance.PlaySound("Trashgame_bg", 0.01f);
     }
 
-    private void Update() {
-        if(playing) {
-            timer -= Time.deltaTime;
-            if(timer < 0) { 
-                playing = false;
-                StartCoroutine(CorrectScreen());
-            }
-            string t = Mathf.FloorToInt(timer / 60) + ":" + Mathf.FloorToInt(timer % 60f).ToString("00");
-            timerText.SetText(t);
+    void SpawnGnomes() {
+        for(int i = 0; i < trashCount; i++) {
+            gnomes.Add(Instantiate(gnomePrefab, gnomeSpawnPos.position + i * Vector3.right * gnomeDist,Quaternion.identity).transform);
         }
     }
+
+
+
+
+
+
+
+
 
     public IEnumerator Shrink(Trash projectile) {
         Vector3 startScale = projectile.transform.localScale;
@@ -66,59 +77,61 @@ public class RecycleGameManager : MonoBehaviour {
             yield return 0;
         }
         projectile.GetComponent<Rigidbody2D>().gravityScale = 1f;
+        projectile.GetComponent<Renderer>().sortingOrder = 5;
         yield return new WaitForSeconds(1);
         projectile.gameObject.layer = defaultLayer;
-        StartCoroutine( NextTrash(false, projectile.trashInfo));
-        
+        StartCoroutine(NextTrash(false, projectile.trashInfo));
+
     }
 
-    public IEnumerator NextTrash(bool wasCorrect,TrashInfo trashInfo) {
-            StopCoroutine(shrinkRoutine);
+    public IEnumerator NextTrash(bool wasCorrect, TrashInfo trashInfo) {
+        StopCoroutine(shrinkRoutine);
         yield return new WaitForSeconds(1f);
 
         if(wasCorrect) {
             correctCount++;
-            correctTrash.Add(  trashInfo);
+            correctTrash.Add(trashInfo);
         } else {
             lastIncorrectTrash = trashInfo;
-            timer -= lossTime;
-            DisplayLoss();
 
         }
         yield return new WaitForSeconds(1f);
-        SpawnTrash();      
+        SpawnTrash();
     }
 
-    private void DisplayLoss() {
-        timeLossText.gameObject.SetActive(true);
-        timeLossText.SetText("-" + Mathf.FloorToInt(lossTime / 60) + ":" + Mathf.FloorToInt(lossTime % 60f).ToString("00"));
-        Invoke("HideLoss",0.7f);
-    }
-
-    private void HideLoss() {
-
-        timeLossText.gameObject.SetActive(false);
-    }
 
     private void SpawnTrash() {
         if(!playing)
             return;
+
+        if(currentTrashCount < trashCount) {
+            currentTrashCount++;
+            trashLeftText.SetText((trashCount - currentTrashCount).ToString());
+        } else {
+            playing = false;
+            StartCoroutine(CorrectScreen());
+        }
+
+
+
+
         GameObject g = Instantiate(trashPrefab, slingShot.transform.position, slingShot.transform.rotation);
-        
-        
+
+
 
         Trash tr = g.GetComponent<Trash>();
         tr.trashInfo = trashObjects[Random.Range(0, trashObjects.Length)];
         tr.Init();
 
         slingShot.projectile = tr;
+        slingShot.GetComponent<Collider2D>().enabled = true;
 
         int t = (int)tr.trashInfo.correctType;
 
         /*int r = Random.Range(0, 4);
         for(int i = 0; i < 4; i++) {
             bins[i]?.SetType((Trash.TrashType)((r + i) % 4));
-            
+
         }*/
 
         MoveBins();
@@ -128,7 +141,7 @@ public class RecycleGameManager : MonoBehaviour {
         IEnumerable positions = UniqueRandom(0, 3);
         int n = 0;
         foreach(int pos in positions) {
-            bins[pos].transform.localPosition = new Vector3(n* binDist,0,0);
+            bins[pos].transform.localPosition = new Vector3(n * binDist, 0, 0);
             n++;
         }
     }
@@ -147,7 +160,7 @@ public class RecycleGameManager : MonoBehaviour {
         correctCountText.SetText("Correct: " + correctTrash.Count + " item(s)");
         correctScreen.SetActive(true);
         for(int i = 0; i < correctTrash.Count; i++) {
-            RectTransform r = Instantiate(menuItem,correctList);
+            RectTransform r = Instantiate(menuItem, correctList);
 
             r.GetComponentInChildren<TextMeshProUGUI>().SetText(correctTrash[i].name);
             r.GetComponentInChildren<Image>().sprite = correctTrash[i].sprite;
@@ -177,9 +190,9 @@ public class RecycleGameManager : MonoBehaviour {
                 break;
         }*/
 
-        
+
         incorrectScreen.SetActive(true);
-        
+
     }
 
     public void Restart() {
