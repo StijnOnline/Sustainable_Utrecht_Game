@@ -8,7 +8,6 @@ public class SlingShot : MonoBehaviour, IDraggable {
     [SerializeField] private GameObject line;
     [SerializeField] private float velocity;
     private Vector3 aimDir;
-    public Vector2 minmax;
 
     public void Drop() {
         projectile.GetComponent<Rigidbody2D>().AddForce(aimDir.normalized * velocity, ForceMode2D.Impulse);
@@ -27,7 +26,7 @@ public class SlingShot : MonoBehaviour, IDraggable {
 
         Vector3 eulers = Quaternion.LookRotation(Vector3.forward, (Vector3)pos - transform.position).eulerAngles;
         
-        eulers.z =  Mathf.Clamp(eulers.z , 135, 235) + 180 /*Mathf.Clamp(eulers.z, 270, 360)*/;
+        eulers.z =  Mathf.Clamp(eulers.z , 125, 235) + 180 /*Mathf.Clamp(eulers.z, 270, 360)*/;
         
         line.transform.rotation = Quaternion.Euler(eulers);
 

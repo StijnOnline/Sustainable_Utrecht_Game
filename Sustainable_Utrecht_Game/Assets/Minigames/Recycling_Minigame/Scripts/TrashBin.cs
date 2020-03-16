@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TrashBin : MonoBehaviour {
-    [SerializeField] private Trash.TrashType type;
+    public Trash.TrashType type;
     [SerializeField] private RecycleGameManager gameManager = null;
 
     //[SerializeField] private SpriteRenderer spriteRenderer=null;
@@ -31,6 +31,7 @@ public class TrashBin : MonoBehaviour {
 
             trash.transform.position = new Vector3(transform.position.x, trash.transform.position.y, trash.transform.position.y);
             trash.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            trash.GetComponent<Rigidbody2D>().gravityScale = 1f;
             Destroy(trash.gameObject, 1f);
 
             StartCoroutine(FeedBack(correct));

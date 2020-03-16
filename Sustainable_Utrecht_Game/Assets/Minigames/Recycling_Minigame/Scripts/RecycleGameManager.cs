@@ -6,14 +6,18 @@ using UnityEngine.UI;
 using TMPro;
 
 public class RecycleGameManager : MonoBehaviour {
+
+    [SerializeField] private GameObject gameScreen;
+
     [SerializeField] private GameObject trashPrefab = null;
     [SerializeField] private SlingShot slingShot = null;
     [SerializeField] private TrashInfo[] trashObjects = null;
     [SerializeField] private TrashBin[] bins = null;
 
     [SerializeField] private float binDist = 2f;
-    [SerializeField] private List<TrashInfo> correctTrash = null;
-    [SerializeField] private TrashInfo lastIncorrectTrash = null;
+    [SerializeField] private List<TrashInfo> incorrectTrash = null;
+    private List<GameObject> missedTrash = new List<GameObject>();
+    //[SerializeField] private TrashInfo lastIncorrectTrash = null;
 
     [SerializeField] private float targetHeight = 3;
 
@@ -26,7 +30,12 @@ public class RecycleGameManager : MonoBehaviour {
     private List<Transform> gnomes = new List<Transform>();
     [SerializeField] private Transform gnomeSpawnPos;
 
-
+    
+    [Header("End Screen")]
+    [SerializeField] private GameObject endScreen;
+    [SerializeField] private Transform endSpawnPos;
+    [SerializeField] private float endTrashDelay;
+    [SerializeField] private float endVelocity = 10;
 
 
     [Header("CorrectScreen")]
@@ -58,7 +67,7 @@ public class RecycleGameManager : MonoBehaviour {
 
     void SpawnGnomes() {
         for(int i = 0; i < trashCount; i++) {
-            gnomes.Add(Instantiate(gnomePrefab, gnomeSpawnPos.position + i * Vector3.right * gnomeDist,Quaternion.identity).transform);
+            gnomes.Add(Instantiate(gnomePrefab, gnomeSpawnPos.position + i * Vector3.right * gnomeDist,Quaternion.identity, gnomeSpawnPos).transform);
         }
     }
 
@@ -76,12 +85,14 @@ public class RecycleGameManager : MonoBehaviour {
             projectile.transform.localScale = startScale * (1 - (shrinkPercentage * Mathf.InverseLerp(transform.position.y, targetHeight, projectile.transform.position.y)));
             yield return 0;
         }
-        projectile.GetComponent<Rigidbody2D>().gravityScale = 1f;
+        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        rb.gravityScale = 1f;
+        rb.velocity = rb.velocity * 0.1f;
         projectile.GetComponent<Renderer>().sortingOrder = 5;
         yield return new WaitForSeconds(1);
         projectile.gameObject.layer = defaultLayer;
         StartCoroutine(NextTrash(false, projectile.trashInfo));
-
+        missedTrash.Add(projectile.gameObject);
     }
 
     public IEnumerator NextTrash(bool wasCorrect, TrashInfo trashInfo) {
@@ -90,10 +101,13 @@ public class RecycleGameManager : MonoBehaviour {
 
         if(wasCorrect) {
             correctCount++;
-            correctTrash.Add(trashInfo);
         } else {
-            lastIncorrectTrash = trashInfo;
-
+            incorrectTrash.Add(trashInfo);
+            //lastIncorrectTrash = trashInfo;
+            foreach(var bin in bins) {
+                if(bin.type == trashInfo.correctType)
+                    bin.GetComponent<Animator>().SetTrigger("Jump");
+            }
         }
         yield return new WaitForSeconds(1f);
         SpawnTrash();
@@ -107,34 +121,53 @@ public class RecycleGameManager : MonoBehaviour {
         if(currentTrashCount < trashCount) {
             currentTrashCount++;
             trashLeftText.SetText((trashCount - currentTrashCount).ToString());
+
+            GameObject g = Instantiate(trashPrefab, slingShot.transform.position, slingShot.transform.rotation);
+
+
+
+            Trash tr = g.GetComponent<Trash>();
+            tr.trashInfo = trashObjects[Random.Range(0, trashObjects.Length)];
+            tr.Init();
+
+            slingShot.projectile = tr;
+            slingShot.GetComponent<Collider2D>().enabled = true;
+
+            int t = (int)tr.trashInfo.correctType;
+
+            /*int r = Random.Range(0, 4);
+            for(int i = 0; i < 4; i++) {
+                bins[i]?.SetType((Trash.TrashType)((r + i) % 4));
+
+            }*/
+
+            MoveBins();
         } else {
             playing = false;
-            StartCoroutine(CorrectScreen());
+            StartCoroutine(EndScreen());
         }
+        
+    }
 
 
+    private IEnumerator EndScreen() {
+        gameScreen.SetActive(false);
+        endScreen.SetActive(true);
+        for(int i = 0; i < missedTrash.Count; i++) {
+            Destroy(missedTrash[i]);
+        }
+        foreach(TrashInfo trash in incorrectTrash) {
+            yield return new WaitForSeconds(endTrashDelay);
+            GameObject g = Instantiate(trashPrefab, endSpawnPos.position, endSpawnPos.rotation);
+            Trash tr = g.GetComponent<Trash>();
+            tr.trashInfo = trash;
+            tr.Init();
+            g.GetComponent<Renderer>().sortingOrder = 5;
 
-
-        GameObject g = Instantiate(trashPrefab, slingShot.transform.position, slingShot.transform.rotation);
-
-
-
-        Trash tr = g.GetComponent<Trash>();
-        tr.trashInfo = trashObjects[Random.Range(0, trashObjects.Length)];
-        tr.Init();
-
-        slingShot.projectile = tr;
-        slingShot.GetComponent<Collider2D>().enabled = true;
-
-        int t = (int)tr.trashInfo.correctType;
-
-        /*int r = Random.Range(0, 4);
-        for(int i = 0; i < 4; i++) {
-            bins[i]?.SetType((Trash.TrashType)((r + i) % 4));
-
-        }*/
-
-        MoveBins();
+            Rigidbody2D rb = g.GetComponent<Rigidbody2D>();
+            rb.gravityScale = 5f;
+            rb.velocity = Vector3.down * endVelocity;
+        }
     }
 
     private void MoveBins() {
@@ -154,7 +187,8 @@ public class RecycleGameManager : MonoBehaviour {
             bins[pos].transform.localPosition = Vector3.Lerp(bins[pos].transform.localPosition, Vector3(),1/steps);
             n++;
         }
-    }*/
+    }
+
 
     private IEnumerator CorrectScreen() {
         correctCountText.SetText("Correct: " + correctTrash.Count + " item(s)");
@@ -173,7 +207,7 @@ public class RecycleGameManager : MonoBehaviour {
         itemImage.sprite = lastIncorrectTrash.sprite;
         incorrectMesssage.SetText(lastIncorrectTrash.explanation);
         //UGLY
-        /*switch(lastIncorrectTrash.correctType) {
+        switch(lastIncorrectTrash.correctType) {
             case Trash.TrashType.Papier:
                 corrertBinImage.sprite = bins[0].paperSprite;
                 break;
@@ -188,12 +222,12 @@ public class RecycleGameManager : MonoBehaviour {
                 break;
             default:
                 break;
-        }*/
+        }
 
 
         incorrectScreen.SetActive(true);
 
-    }
+    }*/
 
     public void Restart() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

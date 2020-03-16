@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Trash : MonoBehaviour {
-    private float targetSize = 2f;
+    private float targetSize = 1.6f;
     private CircleCollider2D coll = null;
 
     public TrashInfo trashInfo;
