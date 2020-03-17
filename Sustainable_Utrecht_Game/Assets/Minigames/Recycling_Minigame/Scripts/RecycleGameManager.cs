@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class RecycleGameManager : MonoBehaviour {
 
@@ -16,39 +17,13 @@ public class RecycleGameManager : MonoBehaviour {
 
     [SerializeField] private float binDist = 2f;
     [SerializeField] private List<TrashInfo> incorrectTrash = null;
-    private List<GameObject> missedTrash = new List<GameObject>();
+    private List<GameObject> allTrash = new List<GameObject>();
     //[SerializeField] private TrashInfo lastIncorrectTrash = null;
 
     [SerializeField] private float targetHeight = 3;
-
     [SerializeField] private float shrinkPercentage = 0.3f;
 
-
-    [Header("Gnomes")]
-    [SerializeField] private float gnomeDist = 2f;
-    [SerializeField] private GameObject gnomePrefab;
-    private List<Transform> gnomes = new List<Transform>();
-    [SerializeField] private Transform gnomeSpawnPos;
-
-    
-    [Header("End Screen")]
-    [SerializeField] private GameObject endScreen;
-    [SerializeField] private Transform endSpawnPos;
-    [SerializeField] private float endTrashDelay;
-    [SerializeField] private float endVelocity = 10;
-
-
-    [Header("CorrectScreen")]
-    [SerializeField] private TextMeshProUGUI correctCountText = null;
-    public GameObject correctScreen = null;
-    public RectTransform correctList = null;
-    public RectTransform menuItem = null;
-    [Header("InCorrectScreen")]
-    public GameObject incorrectScreen = null;
-    [SerializeField] private TextMeshProUGUI incorrectMesssage = null;
     [SerializeField] private TextMeshProUGUI trashLeftText = null;
-    public Image itemImage = null;
-    public Image corrertBinImage = null;
 
     [SerializeField] private int trashCount;
     private int currentTrashCount = 0;
@@ -59,22 +34,63 @@ public class RecycleGameManager : MonoBehaviour {
     public Coroutine shrinkRoutine;
     public LayerMask defaultLayer;
 
+    [SerializeField] private AnimationCurve Xpos;
+    [SerializeField] private AnimationCurve Ypos;
+
+
+
+    [Header("Gnomes")]
+    [SerializeField] private float gnomeDist = 2f;
+    [SerializeField] private GameObject gnomePrefab;
+    private List<Transform> gnomes = new List<Transform>();
+    [SerializeField] private Transform gnomeSpawnPos;
+
+
+    [Header("End Screen")]
+    [SerializeField] private GameObject endScreen;
+    [SerializeField] private Transform endSpawnPos;
+    [SerializeField] private float endTrashDelay;
+    [SerializeField] private float endVelocity = 10;
+
+
+    /*[Header("CorrectScreen")]
+    [SerializeField] private TextMeshProUGUI correctCountText = null;
+    public GameObject correctScreen = null;
+    public RectTransform correctList = null;
+    public RectTransform menuItem = null;
+    [Header("InCorrectScreen")]
+    public GameObject incorrectScreen = null;
+    [SerializeField] private TextMeshProUGUI incorrectMesssage = null;
+    public Image itemImage = null;
+    public Image corrertBinImage = null;*/
+
+
+
+
     private void Start() {
-        SpawnGnomes();
-        SpawnTrash();
+        for(int i = 0; i < trashCount; i++) {
+            gnomes.Add(Instantiate(gnomePrefab, gnomeSpawnPos.position + i * Vector3.right * gnomeDist, Quaternion.identity, gnomeSpawnPos).transform);
+
+
+            GameObject g = Instantiate(trashPrefab, gnomes[i]);
+            Trash tr = g.GetComponent<Trash>();
+            tr.trashInfo = trashObjects[Random.Range(0, trashObjects.Length)];
+            tr.Init();
+
+            g.transform.localPosition = Vector3.up * (2f + (g.GetComponent<SpriteRenderer>().bounds.size.y / 2));
+
+            //g.GetComponent<Rigidbody2D>().isKinematic = true;
+            g.GetComponent<Collider2D>().enabled = false;
+
+            allTrash.Add(g);
+
+        }
+
+        //SpawnTrash();
+        StartCoroutine(SpawnTrash());
+
         AudioPlayer.Instance.PlaySound("Trashgame_bg", 0.01f);
     }
-
-    void SpawnGnomes() {
-        for(int i = 0; i < trashCount; i++) {
-            gnomes.Add(Instantiate(gnomePrefab, gnomeSpawnPos.position + i * Vector3.right * gnomeDist,Quaternion.identity, gnomeSpawnPos).transform);
-        }
-    }
-
-
-
-
-
 
 
 
@@ -92,7 +108,6 @@ public class RecycleGameManager : MonoBehaviour {
         yield return new WaitForSeconds(1);
         projectile.gameObject.layer = defaultLayer;
         StartCoroutine(NextTrash(false, projectile.trashInfo));
-        missedTrash.Add(projectile.gameObject);
     }
 
     public IEnumerator NextTrash(bool wasCorrect, TrashInfo trashInfo) {
@@ -110,51 +125,67 @@ public class RecycleGameManager : MonoBehaviour {
             }
         }
         yield return new WaitForSeconds(1f);
-        SpawnTrash();
+        StartCoroutine(SpawnTrash());
     }
 
 
-    private void SpawnTrash() {
+    private IEnumerator SpawnTrash() {
         if(!playing)
-            return;
+            yield break;
 
         if(currentTrashCount < trashCount) {
-            currentTrashCount++;
             trashLeftText.SetText((trashCount - currentTrashCount).ToString());
 
-            GameObject g = Instantiate(trashPrefab, slingShot.transform.position, slingShot.transform.rotation);
-
-
+            /*GameObject g = Instantiate(trashPrefab, slingShot.transform.position, slingShot.transform.rotation);
 
             Trash tr = g.GetComponent<Trash>();
             tr.trashInfo = trashObjects[Random.Range(0, trashObjects.Length)];
-            tr.Init();
+            tr.Init();*/
+
+            Animator an = gnomes[currentTrashCount].GetComponent<Animator>();
+
+
+            Trash tr = gnomes[currentTrashCount].GetComponentInChildren<Trash>();
+            Transform transform = tr.GetComponent<Transform>();
+            //AnimatorStateInfo animationState = an.GetCurrentAnimatorStateInfo(0);
+
+            //MoveBins();
+            StartCoroutine(MoveBins());
+            Vector3 startPos = transform.localPosition;
+            for(int i = 0; i < 60; i++) {
+                transform.localPosition = new Vector3(Xpos.Evaluate(i), Ypos.Evaluate(i), 0);
+                yield return 0;
+            }
+            an.SetTrigger("Throw");
+            yield return new WaitForSeconds(1f);
+            foreach(var gnome in gnomes) {
+                gnome.GetComponent<Animator>().SetTrigger("Walk");
+            }
+
+
 
             slingShot.projectile = tr;
             slingShot.GetComponent<Collider2D>().enabled = true;
+            tr.GetComponent<Collider2D>().enabled = true;
 
             int t = (int)tr.trashInfo.correctType;
 
-            /*int r = Random.Range(0, 4);
-            for(int i = 0; i < 4; i++) {
-                bins[i]?.SetType((Trash.TrashType)((r + i) % 4));
+            currentTrashCount++;
 
-            }*/
-
-            MoveBins();
         } else {
             playing = false;
             StartCoroutine(EndScreen());
         }
-        
+
     }
 
 
     private IEnumerator EndScreen() {
         gameScreen.SetActive(false);
         endScreen.SetActive(true);
-        for(int i = 0; i < missedTrash.Count; i++) {
-            Destroy(missedTrash[i]);
+        for(int i = 0; i < allTrash.Count; i++) {
+            if(allTrash[i] != null)
+                Destroy(allTrash[i]);
         }
         foreach(TrashInfo trash in incorrectTrash) {
             yield return new WaitForSeconds(endTrashDelay);
@@ -170,27 +201,38 @@ public class RecycleGameManager : MonoBehaviour {
         }
     }
 
-    private void MoveBins() {
-        IEnumerable positions = UniqueRandom(0, 3);
+    /*private void MoveBins() {
+        int[] positions = UniqueRandom(0, 3).ToArray();
         int n = 0;
         foreach(int pos in positions) {
             bins[pos].transform.localPosition = new Vector3(n * binDist, 0, 0);
             n++;
         }
-    }
+        for(int i = 0; i < 4; i++) {
+            bins[i].transform.localPosition = new Vector3(positions[i] * binDist, 0, 0);
+        }
+    }*/
 
-    /*private IEnumerator MoveBins() {
-        int steps = 5;
-        IEnumerable positions = UniqueRandom(0, 4);
-        int n = 0;
-        foreach(int pos in positions) {
-            bins[pos].transform.localPosition = Vector3.Lerp(bins[pos].transform.localPosition, Vector3(),1/steps);
-            n++;
+    private IEnumerator MoveBins() {
+        int timeSteps = 16;
+        int[] positions = UniqueRandom(0, 3).ToArray();
+        Vector3[] startPositions = new Vector3[4];
+        for(int i = 0; i < 4; i++) {
+            startPositions[i] = bins[i].transform.localPosition;
+        }
+        for(int t = 0; t < timeSteps; t++) {
+            for(int i = 0; i < 4; i++) {
+                bins[i].transform.localPosition = Vector3.Lerp(startPositions[i], new Vector3(positions[i] * binDist, 0, 0), t / (float)timeSteps);
+            }
+            yield return new WaitForSeconds(0.02f);
+        }
+        for(int i = 0; i < 4; i++) {
+            bins[i].transform.localPosition = new Vector3(positions[i] * binDist, 0, 0);
         }
     }
 
 
-    private IEnumerator CorrectScreen() {
+    /*private IEnumerator CorrectScreen() {
         correctCountText.SetText("Correct: " + correctTrash.Count + " item(s)");
         correctScreen.SetActive(true);
         for(int i = 0; i < correctTrash.Count; i++) {
