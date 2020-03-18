@@ -8,11 +8,13 @@ using System.Linq;
 public class RecycleGameManager : MonoBehaviour {
 
     [Header("General")]
-    [SerializeField] private GameObject gameScreen;
     [SerializeField] private GameObject trashPrefab = null;
     [SerializeField] private SlingShot slingShot = null;
     [SerializeField] private TrashInfo[] trashObjects = null;
     [SerializeField] private int trashCount;   
+    [SerializeField] private Animator cameraPan;   
+    [SerializeField] private Animator fade;   
+    [SerializeField] private SceneField cityScene;   
     
 
 
@@ -50,7 +52,6 @@ public class RecycleGameManager : MonoBehaviour {
 
 
     [Header("End Screen")]
-    [SerializeField] private GameObject endScreen;
     [SerializeField] private Transform endSpawnPos;
     [SerializeField] private float endTrashDelay;
     [SerializeField] private float endVelocity = 10;
@@ -62,7 +63,6 @@ public class RecycleGameManager : MonoBehaviour {
 
 
     private int currentTrashCount = 0;
-    private int correctCount = 0;
 
     private bool playing = true;
 
@@ -81,14 +81,11 @@ public class RecycleGameManager : MonoBehaviour {
 
             g.transform.localPosition = Vector3.up * (2f + (g.GetComponent<SpriteRenderer>().bounds.size.y / 2));
 
-            //g.GetComponent<Rigidbody2D>().isKinematic = true;
             g.GetComponent<Collider2D>().enabled = false;
 
             allTrash.Add(g);
 
         }
-
-        //SpawnTrash();
         StartCoroutine(SpawnTrash());
 
         AudioPlayer.Instance.PlaySound("Trashgame_bg", 0.01f);
@@ -106,7 +103,6 @@ public class RecycleGameManager : MonoBehaviour {
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         rb.gravityScale = 1f;
         rb.velocity = rb.velocity * 0.1f;
-        //projectile.GetComponent<Renderer>().sortingOrder = 5;
         yield return new WaitForSeconds(1);
         projectile.gameObject.layer = defaultLayer;
         StartCoroutine(NextTrash(false, projectile.trashInfo));
@@ -116,9 +112,8 @@ public class RecycleGameManager : MonoBehaviour {
         StopCoroutine(shrinkRoutine);
         yield return new WaitForSeconds(1f);
 
-        if(wasCorrect) {
-            correctCount++;
-        } else {
+        if(!wasCorrect) {
+        
             incorrectTrash.Add(trashInfo);
             foreach(var bin in bins) {
                 if(bin.type == trashInfo.correctType)
@@ -137,20 +132,13 @@ public class RecycleGameManager : MonoBehaviour {
         if(currentTrashCount < trashCount) {
             trashLeftText.SetText((trashCount - currentTrashCount).ToString());
 
-            /*GameObject g = Instantiate(trashPrefab, slingShot.transform.position, slingShot.transform.rotation);
-
-            Trash tr = g.GetComponent<Trash>();
-            tr.trashInfo = trashObjects[Random.Range(0, trashObjects.Length)];
-            tr.Init();*/
 
             Animator an = gnomes[currentTrashCount].GetComponent<Animator>();
 
 
             Trash tr = gnomes[currentTrashCount].GetComponentInChildren<Trash>();
             Transform transform = tr.GetComponent<Transform>();
-            //AnimatorStateInfo animationState = an.GetCurrentAnimatorStateInfo(0);
 
-            //MoveBins();
             StartCoroutine(MoveBins());
             Vector3 startPos = transform.localPosition;
             for(int i = 0; i < 60; i++) {
@@ -182,11 +170,13 @@ public class RecycleGameManager : MonoBehaviour {
 
 
     private IEnumerator EndScreen() {
-
-        gameScreen.SetActive(false);
-        endScreen.SetActive(true);
+        cameraPan.enabled = true;
         trashLeft.SetActive(false);
+        yield return new WaitForSeconds(3f);
+
+
         correctScore.SetActive(true);
+        //delete old objects
         for(int i = 0; i < allTrash.Count; i++) {
             if(allTrash[i] != null)
                 Destroy(allTrash[i]);
@@ -213,6 +203,15 @@ public class RecycleGameManager : MonoBehaviour {
             rb.gravityScale = 5f;
             rb.velocity = Vector3.down * endVelocity;
         }
+
+        //save
+        SaveData save = DataSaver.LoadData();
+        save.SDGPoints[(int)SGDs.ResponsibleConsumptionAndProduction] = Mathf.Clamp(save.SDGPoints[(int)SGDs.ResponsibleConsumptionAndProduction] + (trashCount - incorrectTrash.Count) * 3,-100,100);
+        DataSaver.SaveData(save);
+
+        fade.SetTrigger("FadeOut");
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(cityScene);
     }
 
     private IEnumerator MoveBins() {
