@@ -22,6 +22,9 @@ public class CameraControl : MonoBehaviour {
     private bool zoomed = false;
     private Animator animator;
 
+    public enum States { TapToStart, Starting, Started }
+    private States state;
+
     void Start() {
         animator = GetComponent<Animator>();
         touchSystem.startTouch += touch;
@@ -32,8 +35,19 @@ public class CameraControl : MonoBehaviour {
 
 
     void Update() {
-        AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
-        if(animationState.normalizedTime > 1) {
+
+        if(state == States.TapToStart && touchSystem.touching) {
+            state = States.Starting;
+            //animator.SetBool("Start",true);
+            animator.enabled = true;
+        }
+        if(state == States.Starting) {
+            AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
+            if(animationState.normalizedTime > 1)
+                state = States.Started;
+        }
+
+        if(state == States.Started) {
             animator.enabled = false;
             cameraTarget.position = Vector3.Lerp(cameraTarget.position, currentTarget.transform.position, moveSpeed);
             Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, currentTarget.targetZoom, zoomSpeed);
@@ -44,6 +58,8 @@ public class CameraControl : MonoBehaviour {
                 ZoomOut();
             }
         }
+
+
     }
 
     void touch(Vector2 pos) {

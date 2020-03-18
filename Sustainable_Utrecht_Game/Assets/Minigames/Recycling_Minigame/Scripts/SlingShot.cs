@@ -31,15 +31,5 @@ public class SlingShot : MonoBehaviour, IDraggable {
         line.transform.rotation = Quaternion.Euler(eulers);
 
         aimDir = line.transform.up;
-
-        /*aimDir = transform.position-(Vector3) pos ;
-        line.transform.rotation = Quaternion.LookRotation(Vector3.forward, aimDir);*/
-        /*
-               snapping
-                Vector3 rot;
-                rot = line.transform.rotation.eulerAngles;
-                rot.z = Mathf.FloorToInt(rot.z / 30) * 30;
-                line.transform.rotation = Quaternion.Euler(rot);
-        */
     }
 }

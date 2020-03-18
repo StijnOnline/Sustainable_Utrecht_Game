@@ -15,9 +15,9 @@ EditorBuildSettings:
     path: Assets/Minigames/House_Minigame/House_Minigame.unity
     guid: 8780560baabae9c45997f812512f3ef2
   - enabled: 0
-    path: Assets/Minigames/Recycling_Minigame/Recylcing_Minigame.unity
-    guid: 8d7e7d50a2664b04f9a94db5c0b093be
-  - enabled: 1
     path: Assets/Minigames/Car_Minigame/Car_Minigame.unity
     guid: 804935f3a9e5e894cbda37d0c6838d94
+  - enabled: 1
+    path: Assets/Minigames/Recycling_Minigame/Recylcing_Minigame.unity
+    guid: a3be44361cad8824fa42d28e2e5a0230
   m_configObjects: {}
