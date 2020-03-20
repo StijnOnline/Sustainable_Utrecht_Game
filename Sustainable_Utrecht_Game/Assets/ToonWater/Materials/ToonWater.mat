@@ -93,7 +93,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DepthGradientDeep: {r: 0.21404415, g: 0.3788336, b: 0.6981132, a: 1}
+    - _DepthGradientDeep: {r: 0.29165182, g: 0.5471698, b: 0.33720016, a: 1}
     - _DepthGradientShallow: {r: 0.21693665, g: 0.5123385, b: 0.6132076, a: 0.7411765}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 0.4117647}
