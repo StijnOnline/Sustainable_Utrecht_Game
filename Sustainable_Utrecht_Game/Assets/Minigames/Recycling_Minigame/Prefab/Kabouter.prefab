@@ -58,10 +58,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8480830309604401495}
     m_Modifications:
+    - target: {fileID: -8603423922187711817, guid: 2b6e7c2353bac5d49b8239e651db31ad,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: -5726670889607966211, guid: 2b6e7c2353bac5d49b8239e651db31ad,
         type: 3}
       propertyPath: m_Name
       value: kabouter_trashgame_blauw (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: -5247687111835636368, guid: 2b6e7c2353bac5d49b8239e651db31ad,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -5193332833323671504, guid: 2b6e7c2353bac5d49b8239e651db31ad,
         type: 3}
@@ -148,6 +158,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -44452659409069883, guid: 2b6e7c2353bac5d49b8239e651db31ad,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 443026774965837491, guid: 2b6e7c2353bac5d49b8239e651db31ad,
         type: 3}
       propertyPath: m_LocalRotation.z
@@ -162,6 +177,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1196536537436058026, guid: 2b6e7c2353bac5d49b8239e651db31ad,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: -4719902167527577726, guid: 2b6e7c2353bac5d49b8239e651db31ad,

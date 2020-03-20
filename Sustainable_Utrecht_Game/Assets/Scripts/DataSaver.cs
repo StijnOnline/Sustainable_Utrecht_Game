@@ -14,7 +14,8 @@ public static class DataSaver {
         string _path = Application.persistentDataPath + Path.DirectorySeparatorChar + "save.json";
         if(File.Exists(_path)) {
             return JsonUtility.FromJson<SaveData>(File.ReadAllText(_path));
+        } else {
+            return new SaveData();
         }
-        return null;
     }
 }
