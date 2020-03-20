@@ -14,16 +14,21 @@ public class CameraControl : MonoBehaviour {
     private CityInterestPoint currentTarget;
     [SerializeField] private LayerMask InterestPointMask;
     [SerializeField] private LayerMask MinigameMask;
+    [SerializeField] private string townHallTag;
+    [SerializeField] private GameObject townHallUI;
 
     private Transform lastClicked;
     private float lastTimeClicked = -100f;
     [SerializeField] private float doubleClickTime;
 
     private bool zoomed = false;
+    private bool townHallUIActive = false;
     private Animator animator;
 
     public enum States { TapToStart, Starting, Started }
     private States state;
+
+
 
     void Start() {
         animator = GetComponent<Animator>();
@@ -72,10 +77,18 @@ public class CameraControl : MonoBehaviour {
             if(p != null) {
 
                 if(lastClicked == hit.transform && Time.time < lastTimeClicked + doubleClickTime) {
-                    lastClicked = null;
-                    currentTarget = p;
+                    //Zoom
 
-                    zoomed = true;
+                    if(p.tag == townHallTag) {
+                        townHallUI.SetActive(true);
+                        townHallUIActive = true;
+                    } else {
+                        lastClicked = null;
+                        currentTarget = p;
+                        zoomed = true;
+                    }
+
+
                 } else {
                     lastClicked = hit.transform;
                 }
@@ -95,6 +108,13 @@ public class CameraControl : MonoBehaviour {
 
     void ZoomOut() {
         zoomed = false;
+        lastClicked = null;
+        currentTarget = cityCentre;
+    }
+
+    public void CloseTownHallUI() {
+        townHallUI.SetActive(false);
+        townHallUIActive = false;
         lastClicked = null;
         currentTarget = cityCentre;
     }
