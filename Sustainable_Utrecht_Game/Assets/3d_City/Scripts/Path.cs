@@ -7,12 +7,11 @@ namespace StijnUtility {
         [SerializeField] private bool loop = false;
         [SerializeField] private List<Transform> nodes = new List<Transform>();
 
+        public float length { get; private set; } = 0;
 
-        private float length;
-        public float getLength() { return length; }
+
 
         void Start() {
-            length = 0;
             nodes.Clear();
 
             foreach(Transform child in GetComponentsInChildren<Transform>()) {
@@ -26,6 +25,11 @@ namespace StijnUtility {
                     length += toNext.magnitude;
                 }
             }
+            if(loop) {
+                Vector3 toNext = (nodes[nodes.Count - 1].position - nodes[0].position);
+                length += toNext.magnitude;
+            }
+
         }
 
         void OnDrawGizmos() {
@@ -46,31 +50,40 @@ namespace StijnUtility {
                 Gizmos.DrawLine(nodes[nodes.Count - 1].position, nodes[0].position);
         }
 
-        public Vector3 Evaluate(float dist) {
-            if(dist <= 0) { return nodes[0].position; }
-            float distLeft = dist;
+        public PathData Evaluate(float dist) {
+            if(dist <= 0) { return new PathData( nodes[0].position, (nodes[1].position - nodes[0].position).normalized); }
+            float distLeft = dist % length;
             int n = 0;
 
             while(distLeft > 0) {
 
-
-                if(!loop && n == nodes.Count - 1) { return nodes[n].position; } //if there aren't any more nodes
+                if(!loop && n == nodes.Count - 1) { return new PathData(nodes[n].position, (nodes[n].position - nodes[n-1].position).normalized); } //if there aren't any more nodes
 
 
                 Vector3 toNext = (nodes[(n + 1) % nodes.Count].position - nodes[n % nodes.Count].position);
                 if((distLeft) < toNext.magnitude) { //if next node is enough
-                    return nodes[n % nodes.Count].position + toNext.normalized * distLeft;
+                    Vector3 pos = nodes[n % nodes.Count].position + toNext.normalized * distLeft;
+                    return new PathData(pos, toNext.normalized);
                 } else {
                     distLeft -= toNext.magnitude;
                     n++;
                 }
             }
             Debug.LogError("Error Evaluating path");
-            return Vector3.zero;
+            return new PathData(Vector3.zero, Vector3.zero);
         }
 
         public List<Transform> GetPath() {
             return nodes;
+        }
+
+        public class PathData {
+            public Vector3 position;
+            public Vector3 forward;
+            public PathData(Vector3 _position, Vector3 _forward) {
+                position = _position;
+                forward = _forward;
+            }
         }
     }
 }
