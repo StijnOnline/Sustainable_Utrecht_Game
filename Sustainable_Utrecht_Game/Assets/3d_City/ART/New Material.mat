@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FlagTexture:
-        m_Texture: {fileID: 2800000, guid: 6e3a0d9301b1b0341b5cb26c3eb2fde7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 41b40ca2a2fbb9249b44bda7dbc12566, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _LogoTexture:
@@ -73,7 +73,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _WavesPattern:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 0, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
@@ -91,15 +91,15 @@ Material:
     - _PatternPower: 9.6
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpeedWaves: 20.6
+    - _SpeedWaves: 22.6
     - _SrcBlend: 1
-    - _TessellationValue: 6.5
+    - _TessellationValue: 7.1
     - _Turbulence: 0
     - _UVSec: 0
     - _UsePattern: 0
     - _WaveAngle: 0.49
-    - _WavesDensity: 0.64
-    - _WavesHigh: -0.06
+    - _WavesDensity: 0.69
+    - _WavesHigh: 0.35
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
