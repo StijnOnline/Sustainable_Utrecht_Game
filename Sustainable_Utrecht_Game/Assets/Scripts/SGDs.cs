@@ -1,4 +1,4 @@
-﻿public enum SGDs {
+﻿public enum SDGs {
     NoPoverty,
     ZeroHunger,
     GoodHealthAndWellBeing,
