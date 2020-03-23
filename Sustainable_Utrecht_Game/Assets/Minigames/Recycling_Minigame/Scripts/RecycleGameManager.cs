@@ -206,7 +206,7 @@ public class RecycleGameManager : MonoBehaviour {
 
         //save
         SaveData save = DataSaver.LoadData();
-        save.SDGPoints[(int)SGDs.ResponsibleConsumptionAndProduction] = Mathf.Clamp(save.SDGPoints[(int)SGDs.ResponsibleConsumptionAndProduction] + (trashCount - incorrectTrash.Count) * 3,-100,100);
+        save.SDGPoints[(int)SDGs.ResponsibleConsumptionAndProduction] = Mathf.Clamp(save.SDGPoints[(int)SDGs.ResponsibleConsumptionAndProduction] + (trashCount - incorrectTrash.Count) * 3,-100,100);
         DataSaver.SaveData(save);
 
         fade.SetTrigger("FadeOut");
