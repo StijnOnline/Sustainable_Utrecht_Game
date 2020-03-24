@@ -24,13 +24,8 @@ public class HouseGenerator : MonoBehaviour {
     [SerializeField] private GameObject MAN;
     [SerializeField] private float manChance;
 
-    void Start() {
-        GenerateHouse();
 
-
-    }
-
-    void GenerateHouse() {
+    public void GenerateHouse() {
 
 
 
