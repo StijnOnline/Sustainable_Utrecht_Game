@@ -1,0 +1,436 @@
+fileFormatVersion: 2
+guid: d8efbf0b5fb365c4a92ee236b45677b2
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    isReadable: 0
+    streamingMipmaps: 1
+    streamingMipmapsPriority: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+  spriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 0, y: 0}
+  mosaicSpriteImportData: []
+  rigSpriteImportData:
+  - name: koelkast open
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1405
+      y: 4
+      width: 289
+      height: 624
+    spriteID: a39d6141d8daf16458d1ccd4cc583a9e
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 327, y: -72}
+  - name: koelkast dicht
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1702
+      y: 4
+      width: 219
+      height: 606
+    spriteID: cb353515135ef1943b9972768875741c
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 554, y: -90}
+  - name: magnetron uit
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 607
+      y: 1017
+      width: 221
+      height: 124
+    spriteID: de4b3371fe8009246937f28ae016930c
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 525, y: 550}
+  - name: magnetron aan
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 836
+      y: 1017
+      width: 221
+      height: 123
+    spriteID: b115121819cb69b419e1e7b1ef8084c0
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 754, y: 549}
+  - name: lampen uit
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1405
+      y: 855
+      width: 524
+      height: 133
+    spriteID: 738fe94fa77f67f46a55ab9c779cb0b8
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 973, y: 145}
+  - name: lampen aan
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1405
+      y: 636
+      width: 637
+      height: 211
+    spriteID: 78bdfa5a36afd9e42ae3c45978ce83e0
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 1029, y: -61}
+  - name: fornuis aan
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1065
+      y: 1017
+      width: 426
+      height: 43
+    spriteID: 5b33d14f943071442b2e587b34399c91
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 727, y: 579}
+  - name: fornuis uit
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1499
+      y: 1017
+      width: 426
+      height: 43
+    spriteID: 567b72eecf247be4fb3be3fa658e2e36
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 1161, y: 579}
+  - name: oven aan
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1017
+      width: 294
+      height: 373
+    spriteID: 00e992b592bff0e468ef0ed518020c2b
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -41, y: 922}
+  - name: oven uit
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 306
+      y: 1017
+      width: 293
+      height: 373
+    spriteID: ea2d2e3037727f64294de2397572b6d1
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 261, y: 922}
+  - name: keuken
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 1393
+      height: 1005
+    spriteID: 0b9f0f80c1ca485448520667f8229ec1
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 4}
+  platformSettings: []
+  mosaicLayers: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  importedTextureWidth: 2048
+  importedTextureHeight: 2048
+  documentSize: {x: 1393, y: 1005}
+  paperDollMode: 0
+  keepDupilcateSpriteName: 0
+  spriteCategoryList:
+    categories: []
+  textureActualWidth: 2048
+  textureActualHeight: 2048
+  spritePackingTag: 
+  resliceFromLayer: 0
+  characterMode: 1
+  mosaicPSDLayers: []
+  rigPSDLayers:
+  - name: koelkast open
+    spriteName: koelkast open
+    isGroup: 0
+    parentIndex: -1
+    spriteID: a39d6141d8daf16458d1ccd4cc583a9e
+    layerID: 11
+    mosaicPosition: {x: 1405, y: 4}
+  - name: koelkast dicht
+    spriteName: koelkast dicht
+    isGroup: 0
+    parentIndex: -1
+    spriteID: cb353515135ef1943b9972768875741c
+    layerID: 12
+    mosaicPosition: {x: 1702, y: 4}
+  - name: magnetron uit
+    spriteName: magnetron uit
+    isGroup: 0
+    parentIndex: -1
+    spriteID: de4b3371fe8009246937f28ae016930c
+    layerID: 10
+    mosaicPosition: {x: 607, y: 1017}
+  - name: magnetron aan
+    spriteName: magnetron aan
+    isGroup: 0
+    parentIndex: -1
+    spriteID: b115121819cb69b419e1e7b1ef8084c0
+    layerID: 9
+    mosaicPosition: {x: 836, y: 1017}
+  - name: lampen uit
+    spriteName: lampen uit
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 738fe94fa77f67f46a55ab9c779cb0b8
+    layerID: 8
+    mosaicPosition: {x: 1405, y: 855}
+  - name: lampen aan
+    spriteName: lampen aan
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 78bdfa5a36afd9e42ae3c45978ce83e0
+    layerID: 7
+    mosaicPosition: {x: 1405, y: 636}
+  - name: fornuis aan
+    spriteName: fornuis aan
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 5b33d14f943071442b2e587b34399c91
+    layerID: 4
+    mosaicPosition: {x: 1065, y: 1017}
+  - name: fornuis uit
+    spriteName: fornuis uit
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 567b72eecf247be4fb3be3fa658e2e36
+    layerID: 3
+    mosaicPosition: {x: 1499, y: 1017}
+  - name: oven aan
+    spriteName: oven aan
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 00e992b592bff0e468ef0ed518020c2b
+    layerID: 5
+    mosaicPosition: {x: 4, y: 1017}
+  - name: oven uit
+    spriteName: oven uit
+    isGroup: 0
+    parentIndex: -1
+    spriteID: ea2d2e3037727f64294de2397572b6d1
+    layerID: 6
+    mosaicPosition: {x: 306, y: 1017}
+  - name: keuken
+    spriteName: keuken
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 0b9f0f80c1ca485448520667f8229ec1
+    layerID: 2
+    mosaicPosition: {x: 4, y: 4}
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+  generateGOHierarchy: 0
+  textureAssetName: keuken_V3 Texture
+  prefabAssetName: keuken_V3 Prefab
+  spriteLibAssetName: keuken_V3 Sprite Lib
+  secondarySpriteTextures: []
