@@ -17,6 +17,10 @@ class HouseManager : MonoBehaviour {
 
     [SerializeField] private float fallIntroTime = 1;
     [SerializeField] private float fallIntroDist = 60;
+    [SerializeField] private float playTime = 20f;
+    [SerializeField] private float playStartWaitTime = 3f;
+
+
 
     private void Start() {
         barMaskheight = barMask.localScale.y;
@@ -56,8 +60,8 @@ class HouseManager : MonoBehaviour {
                 yield return 0;
             }
             yield return new WaitForSeconds(0.2f);
-            for(int i = 0; i < 30; i++) {
-                Camera.main.transform.position += Vector3.up * generator.roomHeigth / 30;
+            for(int i = 0; i < 45; i++) {
+                Camera.main.transform.position += Vector3.up * generator.roomHeigth / 45;
                 yield return 0;
             }
 
@@ -73,8 +77,8 @@ class HouseManager : MonoBehaviour {
         for(int f = generator.root.childCount - 1; f >= 0; f--) {
             Transform floor = generator.root.GetChild(f);
 
-            for(int i = 0; i < 30; i++) {
-                Camera.main.transform.position += Vector3.down * generator.roomHeigth / 30;
+            for(int i = 0; i < 45; i++) {
+                Camera.main.transform.position += Vector3.down * generator.roomHeigth / 45;
                 yield return 0;
             }
             yield return new WaitForSeconds(0.2f);
@@ -85,8 +89,16 @@ class HouseManager : MonoBehaviour {
 
         }
 
+        StartCoroutine(MoveCamera());
 
+    }
 
+    public IEnumerator MoveCamera() {
+        yield return new WaitForSeconds(playStartWaitTime);
+        for(int i = 0; i < playTime*60; i++) {
+            Camera.main.transform.position += Vector3.up * generator.roomHeigth * 4 / playTime / 60;
+            yield return 0;
+        }
     }
 
     public void ChangeEnergy(float amount) {
