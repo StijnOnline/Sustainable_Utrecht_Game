@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HouseItem : MonoBehaviour, IClickable
 {
-    [SerializeField] private SpriteMask spriteMask;
+    [SerializeField] private GameObject enableObject;
     public bool turnedOn = false;
     public float energy = 1;
 
@@ -15,7 +15,7 @@ public class HouseItem : MonoBehaviour, IClickable
 
     public void ChangeState() {
         turnedOn = !turnedOn;
-        spriteMask.enabled = turnedOn;
+        enableObject.SetActive(!turnedOn);
         HouseManager.self.ChangeEnergy(energy * (turnedOn ? 1 : -1));
     }
 
