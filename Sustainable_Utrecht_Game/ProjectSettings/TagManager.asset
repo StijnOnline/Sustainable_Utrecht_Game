@@ -43,3 +43,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: OverLay
+    uniqueID: 1203212437
+    locked: 0
+  - name: HangLamp
+    uniqueID: 2255653187
+    locked: 0
+  - name: BureauLamp
+    uniqueID: 665485459
+    locked: 0
+  - name: MuurLamp
+    uniqueID: 2645612015
+    locked: 0
+  - name: BureauLampLos
+    uniqueID: 1046588405
+    locked: 0
+  - name: StaLamp
+    uniqueID: 1041421747
+    locked: 0
+  - name: Interactable
+    uniqueID: 2915054397
+    locked: 0

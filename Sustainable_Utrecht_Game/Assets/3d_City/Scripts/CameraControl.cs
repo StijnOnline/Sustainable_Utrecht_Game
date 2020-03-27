@@ -9,6 +9,8 @@ public class CameraControl : MonoBehaviour {
     [SerializeField] private float zoomSpeed;
     [SerializeField] private float moveSpeed;
     [SerializeField] private Transform cameraTarget;
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private Animator fade;
 
     [SerializeField] private CityInterestPoint cityCentre;
     private CityInterestPoint currentTarget;
@@ -28,6 +30,8 @@ public class CameraControl : MonoBehaviour {
     public enum States { TapToStart, Starting, Started }
     private States state;
 
+    private Camera currentCamera;
+
 
 
     void Start() {
@@ -36,6 +40,7 @@ public class CameraControl : MonoBehaviour {
         touchSystem.inversePinch += ZoomOut;
         currentTarget = cityCentre;
         currentTarget = cityCentre;
+        currentCamera = mainCamera;
     }
 
 
@@ -71,37 +76,57 @@ public class CameraControl : MonoBehaviour {
         Vector3 v = Camera.main.ScreenToWorldPoint(pos);
 
         RaycastHit hit;
-        if(Physics.Raycast(v, Camera.main.transform.forward, out hit, Mathf.Infinity, InterestPointMask)) {
-            //check for script ?
-            CityInterestPoint p = hit.transform.GetComponent<CityInterestPoint>();
-            if(p != null) {
-
+        if(zoomed) {
+            if(Physics.Raycast(v, Camera.main.transform.forward, out hit, Mathf.Infinity, MinigameMask)) {
                 if(lastClicked == hit.transform && Time.time < lastTimeClicked + doubleClickTime) {
-                    //Zoom
-
-                    if(p.tag == townHallTag) {
-                        townHallUI.SetActive(true);
-                        townHallUIActive = true;
-                    } else {
-                        lastClicked = null;
-                        currentTarget = p;
-                        zoomed = true;
-                    }
-
-
+                    StartCoroutine(LoadMinigame(hit.transform.GetComponent<StartMinigame>().scene.SceneName));
                 } else {
                     lastClicked = hit.transform;
                 }
                 lastTimeClicked = Time.time;
-
+            } else {
+                lastClicked = null;
             }
-
         } else {
-            lastClicked = null;
-        }
-        if(zoomed) {
-            if(Physics.Raycast(v, Camera.main.transform.forward, out hit, Mathf.Infinity, MinigameMask)) {
-                SceneManager.LoadScene(hit.transform.GetComponent<StartMinigame>().scene);
+
+            if(Physics.Raycast(v, Camera.main.transform.forward, out hit, Mathf.Infinity, InterestPointMask)) {
+                //check for script ?
+                CityInterestPoint p = hit.transform.GetComponent<CityInterestPoint>();
+                if(p != null) {
+
+                    if(lastClicked == hit.transform && Time.time < lastTimeClicked + doubleClickTime) {
+                        //Zoom
+                        if(p.camera != null) {
+                            mainCamera.enabled = false;
+                            mainCamera.tag = "Untagged";
+                            currentCamera = p.camera;
+                            p.camera.enabled = true;
+                            p.camera.tag = "MainCamera";
+                            zoomed = true;
+
+                            fade.SetTrigger("FadeOut");
+
+                            fade.SetTrigger("FadeIn");
+                        } else {
+                            if(p.tag == townHallTag) {
+                                townHallUI.SetActive(true);
+                                townHallUIActive = true;
+                            } else {
+                                lastClicked = null;
+                                currentTarget = p;
+                                zoomed = true;
+                            }
+                        }
+
+                    } else {
+                        lastClicked = hit.transform;
+                    }
+                    lastTimeClicked = Time.time;
+
+                }
+
+            } else {
+                lastClicked = null;
             }
         }
     }
@@ -110,6 +135,16 @@ public class CameraControl : MonoBehaviour {
         zoomed = false;
         lastClicked = null;
         currentTarget = cityCentre;
+        if(currentCamera != mainCamera) {
+            fade.SetTrigger("FadeOut");
+            fade.SetTrigger("FadeIn");
+            currentCamera.tag = "Untagged";
+            currentCamera.enabled = false;
+
+            mainCamera.enabled = true;
+            mainCamera.tag = "MainCamera";
+            currentCamera = mainCamera;
+        }
     }
 
     public void CloseTownHallUI() {
@@ -117,5 +152,12 @@ public class CameraControl : MonoBehaviour {
         townHallUIActive = false;
         lastClicked = null;
         currentTarget = cityCentre;
+    }
+
+    IEnumerator LoadMinigame(string scene) {
+        fade.SetTrigger("FadeOut");
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(scene);
+
     }
 }

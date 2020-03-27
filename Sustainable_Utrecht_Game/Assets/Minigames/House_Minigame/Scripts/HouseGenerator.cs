@@ -6,7 +6,7 @@ public class HouseGenerator : MonoBehaviour {
 
 
 
-    [SerializeField] private Transform root;
+    public Transform root;
 
 
     [SerializeField] private int floorCount = 3;
@@ -17,25 +17,23 @@ public class HouseGenerator : MonoBehaviour {
     [SerializeField] private float mediumRoomWidth = 2f;
     [SerializeField] private float bigRoomWidth = 20f;
 
-    [SerializeField] private float roomHeigth = 2f;
+    public float roomHeigth = 2f;
     [SerializeField] private GameObject[] smallRoomPrefabs;
     [SerializeField] private GameObject[] mediumRoomPrefabs;
     [SerializeField] private GameObject[] bigRoomPrefabs;
     [SerializeField] private GameObject MAN;
     [SerializeField] private float manChance;
 
-    void Start() {
-        GenerateHouse();
 
-
-    }
-
-    void GenerateHouse() {
+    public void GenerateHouse() {
 
 
 
         float yPos = 0;
         for(int i = 0; i < floorCount; i++) {
+            Transform floor = new GameObject("Floor"+i).transform;
+            floor.parent = root;
+
             bool bigRoom = Random.value < bigRoomChance;
             Vector3 roomPos;
             if(bigRoom) {
@@ -44,10 +42,10 @@ public class HouseGenerator : MonoBehaviour {
 
                 roomPos = root.position + Vector3.right * (-r * 0.5f * (smallRoomWidth + bigRoomWidth) + r * 0.5f * smallRoomWidth) + Vector3.up * yPos;
                 //Instantiate(smallRoomPrefabs[Random.Range(0, smallRoomPrefabs.Length)], roomPos, Quaternion.identity, root);
-                SpawnRoom(smallRoomPrefabs, roomPos);
+                SpawnRoom(smallRoomPrefabs, roomPos, floor);
                 roomPos = root.position + Vector3.right * (r * 0.5f * (smallRoomWidth + bigRoomWidth) + -r * 0.5f * bigRoomWidth) + Vector3.up * yPos;
                 //Instantiate(bigRoomPrefabs[Random.Range(0, bigRoomPrefabs.Length)], root.position + Vector3.right * (r * 0.5f * (smallRoomWidth + bigRoomWidth) + -r * 0.5f * bigRoomWidth) + Vector3.up * yPos, Quaternion.identity, root);
-                SpawnRoom(bigRoomPrefabs, roomPos);
+                SpawnRoom(bigRoomPrefabs, roomPos, floor);
             
 
             } else {
@@ -57,9 +55,9 @@ public class HouseGenerator : MonoBehaviour {
 
                 roomPos = root.position + Vector3.right * mediumRoomWidth * 0.5f + Vector3.up * yPos;
 
-                SpawnRoom(mediumRoomPrefabs, roomPos);
+                SpawnRoom(mediumRoomPrefabs, roomPos, floor);
                 roomPos = root.position + Vector3.right * mediumRoomWidth * -0.5f + Vector3.up * yPos;
-                SpawnRoom(mediumRoomPrefabs, roomPos);
+                SpawnRoom(mediumRoomPrefabs, roomPos, floor);
                 //Instantiate(mediumRoomPrefabs[Random.Range(0, mediumRoomPrefabs.Length)], root.position + Vector3.right * mediumRoomWidth *0.5f + Vector3.up * yPos, Quaternion.identity, root);
                 //Instantiate(mediumRoomPrefabs[Random.Range(0, mediumRoomPrefabs.Length)], root.position + Vector3.right * mediumRoomWidth * -0.5f + Vector3.up * yPos, Quaternion.identity, root);
 
@@ -96,11 +94,11 @@ public class HouseGenerator : MonoBehaviour {
         //Instantiate(mediumRoomPrefabs[Random.Range(0, mediumRoomPrefabs.Length)], transform.position + Vector3.right * (r * 0.5f * (smallRoomWidth + bigRoomWidth) + -r * 0.5f * bigRoomWidth) + Vector3.up * yPos, Quaternion.identity);
     }
 
-    void SpawnRoom(GameObject[] prefabs, Vector3 position) {
-        Instantiate(prefabs[Random.Range(0, prefabs.Length)], position, Quaternion.identity, root);
+    void SpawnRoom(GameObject[] prefabs, Vector3 position, Transform parent) {
+        Instantiate(prefabs[Random.Range(0, prefabs.Length)], position, Quaternion.identity, parent);
         bool man = Random.value < manChance;
         if(man) {
-            Instantiate(MAN, position + Vector3.up * 3.25f, Quaternion.identity, root);
+            Instantiate(MAN, position + Vector3.up * 3.25f, Quaternion.identity, parent);
 
         }
 
