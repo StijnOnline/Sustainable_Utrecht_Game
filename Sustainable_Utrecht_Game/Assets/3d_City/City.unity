@@ -18402,6 +18402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path: {fileID: 1998174238}
   movespeed: 0.1
+  turnSmooth: 0
 --- !u!1001 &1555350130
 PrefabInstance:
   m_ObjectHideFlags: 0
