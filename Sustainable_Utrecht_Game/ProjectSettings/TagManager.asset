@@ -58,6 +58,9 @@ TagManager:
   - name: BureauLampLos
     uniqueID: 1046588405
     locked: 0
+  - name: StaLamp
+    uniqueID: 1041421747
+    locked: 0
   - name: Interactable
     uniqueID: 2915054397
     locked: 0
