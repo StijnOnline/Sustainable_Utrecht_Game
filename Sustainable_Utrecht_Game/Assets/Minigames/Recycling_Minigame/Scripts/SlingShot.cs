@@ -10,6 +10,10 @@ public class SlingShot : MonoBehaviour, IDraggable {
     private Vector3 aimDir;
 
     public void Drop() {
+
+        StartCoroutine(MoveProjectile(2f));
+        GetComponentInChildren<Animator>().SetBool("Stretch", false);
+
         projectile.GetComponent<Rigidbody2D>().AddForce(aimDir.normalized * velocity, ForceMode2D.Impulse);
         line.SetActive(false);
         gameManager.shrinkRoutine = StartCoroutine(gameManager.Shrink(projectile));
@@ -18,7 +22,16 @@ public class SlingShot : MonoBehaviour, IDraggable {
     }    
 
     public void Pick() {
+        StartCoroutine(MoveProjectile(-2f));
+        GetComponentInChildren<Animator>().SetBool("Stretch",true);
         line.SetActive(true);
+    }
+
+    public IEnumerator MoveProjectile(float dist) {
+        for(int i = 0; i < 20; i++) {
+            projectile.transform.position += Vector3.up * dist  / 20f;
+            yield return 0;
+        }
     }
 
     public void UpdatePos(Vector2 pos) {

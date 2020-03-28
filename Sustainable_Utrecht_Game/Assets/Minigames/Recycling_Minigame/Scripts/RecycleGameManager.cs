@@ -53,6 +53,7 @@ public class RecycleGameManager : MonoBehaviour {
 
     [Header("End Screen")]
     [SerializeField] private Transform endSpawnPos;
+    [SerializeField] private Animator gnome;
     [SerializeField] private float endTrashDelay;
     [SerializeField] private float endVelocity = 10;
 
@@ -133,7 +134,7 @@ public class RecycleGameManager : MonoBehaviour {
             trashLeftText.SetText((trashCount - currentTrashCount).ToString());
 
 
-            Animator an = gnomes[currentTrashCount].GetComponent<Animator>();
+            Animator an = gnomes[currentTrashCount].GetComponentInChildren<Animator>();
 
 
             Trash tr = gnomes[currentTrashCount].GetComponentInChildren<Trash>();
@@ -146,9 +147,9 @@ public class RecycleGameManager : MonoBehaviour {
                 yield return 0;
             }
             an.SetTrigger("Throw");
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             foreach(var gnome in gnomes) {
-                gnome.GetComponent<Animator>().SetTrigger("Walk");
+                gnome.GetComponentInChildren<Animator>().SetTrigger("Walk");
             }
 
 
@@ -186,9 +187,10 @@ public class RecycleGameManager : MonoBehaviour {
             correctText.SetText((i+1).ToString());
             yield return new WaitForSeconds(0.75f);
         }
-
+        yield return new WaitForSeconds(2f);
         incorrectScore.SetActive(true);
         butText.SetActive(true);
+        gnome.SetTrigger("Hurt");
 
         for(int i = 0; i < incorrectTrash.Count; i++) { 
             yield return new WaitForSeconds(endTrashDelay);
@@ -208,6 +210,9 @@ public class RecycleGameManager : MonoBehaviour {
         SaveData save = DataSaver.LoadData();
         save.SDGPoints[(int)SDGs.ResponsibleConsumptionAndProduction] = Mathf.Clamp(save.SDGPoints[(int)SDGs.ResponsibleConsumptionAndProduction] + (trashCount - incorrectTrash.Count) * 3,-100,100);
         DataSaver.SaveData(save);
+
+
+        yield return new WaitForSeconds(1f);
 
         fade.SetTrigger("FadeOut");
         yield return new WaitForSeconds(0.5f);
