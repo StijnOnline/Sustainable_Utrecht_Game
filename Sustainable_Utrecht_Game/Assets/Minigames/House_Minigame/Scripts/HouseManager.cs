@@ -8,16 +8,14 @@ class HouseManager : MonoBehaviour {
     public HouseGenerator generator;
     [SerializeField] private Transform bar;
     [SerializeField] private Transform barMask;
-    [SerializeField] private Transform barMin;
     [SerializeField] private Transform barMax;
     [SerializeField] private Transform roof;
     private float barMaskheight;
     private HouseItem[] houseItems;
 
     private float totalEnergy = 0;
-    private float energy = 0;
+    public float energy = 0;
     [SerializeField] private float defaultEnergy = 0;
-    [SerializeField] private float barMinValue = 0;
     [SerializeField] private float barMaxValue = 0;
 
     [SerializeField] private float fallIntroTime = 1;
@@ -28,15 +26,16 @@ class HouseManager : MonoBehaviour {
     [Header("End")]
     [SerializeField] private Transform energyBarPosition;
     [SerializeField] private Transform bar2;
+    [SerializeField] private Transform gnome;
+    [SerializeField] private Transform gnomeHat;
     [SerializeField] private float barTartgetScale;
-    [SerializeField] private Animator laser;
+    [SerializeField] private Animator[] lasers;
 
     private void Start() {
         barMaskheight = barMask.localScale.y;
         self = this;
         bar.gameObject.SetActive(false);
 
-        barMin.localPosition = Vector2.up * ((barMinValue - 0.5f) * barMaskheight);
         barMax.localPosition = Vector2.up * ((barMaxValue - 0.5f) * barMaskheight);
 
         generator.GenerateHouse();
@@ -127,8 +126,9 @@ class HouseManager : MonoBehaviour {
             bar.localScale = Vector3.Lerp(startSize, Vector3.one * barTartgetScale, i / (float)steps);
             yield return 0;
         }
-        if(laser != null)
-            laser.SetTrigger("Charge");
+        foreach(var laser in lasers) {
+            laser.SetBool("Charge",true);
+        }
         float achievedEnergy = energy;
         while(energy > 0) {
             energy--;
@@ -137,12 +137,21 @@ class HouseManager : MonoBehaviour {
             yield return new WaitForSeconds(0.05f);
         }
 
-        if(laser != null && achievedEnergy / totalEnergy > barMaxValue) {
-            laser.SetTrigger("Shoot");
+        if(achievedEnergy / totalEnergy > barMaxValue) {
+            foreach(var laser in lasers) {
+                laser.SetTrigger("Shoot");
+            }
+            yield return new WaitForSeconds(0.5f);
+            gnome.gameObject.SetActive(false);
+            gnomeHat.gameObject.SetActive(true);
             //TODO Kabouter
         } else {
-            laser.SetTrigger("Discharge");
-            //TODO Kabouter
+            yield return new WaitForSeconds(2.2f);
+            foreach(var laser in lasers) {
+                laser.SetBool("Charge", false);
+            }
+            yield return new WaitForSeconds(0.5f);
+            gnome.GetComponent<Animator>().SetTrigger("Happy");
         }
     }
 
