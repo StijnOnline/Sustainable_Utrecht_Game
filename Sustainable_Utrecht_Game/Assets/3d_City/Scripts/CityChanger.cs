@@ -19,7 +19,7 @@ public class CityChanger : MonoBehaviour
     private void OnEnable() {
         SaveData save = DataSaver.LoadData();
         foreach(CityVariable cityVariable in cityVariables) {
-            bool inrange = (save.SDGPoints[(int)cityVariable._SDG] > cityVariable.activeRange.x && save.SDGPoints[(int)cityVariable._SDG] < cityVariable.activeRange.y);
+            bool inrange = (save.SDGPoints[(int)cityVariable._SDG] >= cityVariable.activeRange.x && save.SDGPoints[(int)cityVariable._SDG] < cityVariable.activeRange.y);
             if(cityVariable._object != null) {
                 cityVariable._object.SetActive(inrange);
             }
