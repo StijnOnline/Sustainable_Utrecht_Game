@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 class HouseManager : MonoBehaviour {
 
@@ -30,6 +31,8 @@ class HouseManager : MonoBehaviour {
     [SerializeField] private Transform gnomeHat;
     [SerializeField] private float barTartgetScale;
     [SerializeField] private Animator[] lasers;
+    [SerializeField] private Animator fade;
+    [SerializeField] private SceneField scene;
 
     private void Start() {
         barMaskheight = barMask.localScale.y;
@@ -153,6 +156,12 @@ class HouseManager : MonoBehaviour {
             yield return new WaitForSeconds(0.5f);
             gnome.GetComponent<Animator>().SetTrigger("Happy");
         }
+
+
+        yield return new WaitForSeconds(1f);
+        fade.SetTrigger("FadeOut");
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(scene);
     }
 
     public void ChangeEnergy(float amount) {
