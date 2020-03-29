@@ -21,8 +21,6 @@ public class HouseGenerator : MonoBehaviour {
     [SerializeField] private GameObject[] smallRoomPrefabs;
     [SerializeField] private GameObject[] mediumRoomPrefabs;
     [SerializeField] private GameObject[] bigRoomPrefabs;
-    [SerializeField] private GameObject MAN;
-    [SerializeField] private float manChance;
 
 
     public void GenerateHouse() {
@@ -96,11 +94,5 @@ public class HouseGenerator : MonoBehaviour {
 
     void SpawnRoom(GameObject[] prefabs, Vector3 position, Transform parent) {
         Instantiate(prefabs[Random.Range(0, prefabs.Length)], position, Quaternion.identity, parent);
-        bool man = Random.value < manChance;
-        if(man) {
-            Instantiate(MAN, position + Vector3.up * 3.25f, Quaternion.identity, parent);
-
-        }
-
     }
 }
