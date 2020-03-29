@@ -156,7 +156,10 @@ class HouseManager : MonoBehaviour {
             yield return new WaitForSeconds(0.5f);
             gnome.GetComponent<Animator>().SetTrigger("Happy");
         }
-
+        //save
+        SaveData save = DataSaver.LoadData();
+        save.SDGPoints[(int)SDGs.AffordableAndCleanEnergy] = Mathf.Clamp(save.SDGPoints[(int)SDGs.AffordableAndCleanEnergy] + Mathf.FloorToInt((totalEnergy * barMaxValue - energy) * 2), -100, 100);
+        DataSaver.SaveData(save);
 
         yield return new WaitForSeconds(1f);
         fade.SetTrigger("FadeOut");
